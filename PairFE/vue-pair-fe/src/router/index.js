@@ -1,23 +1,105 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import MainView from '../views/MainView.vue'
+import PostView from '@/views/post/PostView.vue'
+import UserView from '@/views/user/UserView.vue'
+
+import PostList from '@/components/post/PostList.vue'
+import PostCreate from '@/components/post/PostCreate.vue'
+import PostDetail from '@/components/post/PostDetail.vue'
+import PostUpdate from '@/components/post/PostUpdate.vue'
+
+import UserComment from '@/components/user/UserComment.vue'
+import UserDetail from '@/components/user/UserDetail.vue'
+import UserFind from '@/components/user/UserFind.vue'
+import UserFollow from '@/components/user/UserFollow.vue'
+import UserJoin from '@/components/user/UserJoin.vue'
+import UserLikeList from '@/components/user/UserLikeList.vue'
+import UserLogin from '@/components/user/UserLogin.vue'
+import UserUpdate from '@/components/user/UserUpdate.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'main',
+    component: MainView,
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    path: '/post',
+    name: 'post',
+    component: PostView,
+    children: [
+      {
+        path: "",
+        name: "postList",
+        component: PostList
+      },
+      {
+        path: "create",
+        name: "postCreate",
+        component: PostCreate
+      },
+      {
+        path: "detail/:postId",
+        name: "postDetail",
+        component: PostDetail
+      },
+      {
+        path: "update",
+        name: "postUpdate",
+        component: PostUpdate
+      },
+    ]
+  },
+  {
+    path: '/user',
+    name: 'user', 
+    component: UserView,
+    children: [
+      {
+        path: "login",
+        name: "userLogin",
+        component: UserLogin
+      },
+      {
+        path: "join",
+        name: "userJoin",
+        component: UserJoin
+      },
+      {
+        path: ":userId/detail",
+        name: "userDetail",
+        component: UserDetail
+      },
+      {
+        path: ":userId/update",
+        name: "userUpdate",
+        component: UserUpdate
+      },
+      {
+        path: ":userId",
+        name: "userLikeList",
+        component: UserLikeList
+      },
+      {
+        path: ":userId/comment",
+        name: "userComment",
+        component: UserComment
+      },
+      {
+        path: ":userId/follow",
+        name: "userFollow",
+        component: UserFollow
+      },
+      {
+        path: "find",
+        name: "userFind",
+        component: UserFind
+      },
+    ]
+  },
 ]
 
 const router = new VueRouter({
