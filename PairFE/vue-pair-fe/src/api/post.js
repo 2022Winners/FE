@@ -4,13 +4,13 @@ const REST_API = `http://localhost:9999`
 
 //POST 등록
 export function createPost(post) {
-    return api.post(`${REST_API}/api/post`, null,  post)
+    return api.post(`${REST_API}/api/post`, post)
 } 
 
-//POST 수정
-export function updatePost(post) {
-    return api.put(`${REST_API}/api/post`, post)
-}
+// //POST 수정
+// export function updatePost(formData) {
+//     return api.put(`${REST_API}/api/post`,{ headers: { 'Content-Type': 'multipart/form-data' }}, formData)
+// }
 
 //POST 삭제
 export function deletePost(id) {

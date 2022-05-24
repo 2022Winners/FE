@@ -1,5 +1,7 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex from 'vuex' 
+import router from '@/router'
+import axios from 'axios'
 
 
 Vue.use(Vuex)
@@ -23,9 +25,28 @@ export default new Vuex.Store({
     },
     GET_DETAILPOST(state, payload){
       state.post = payload
+      console.log(payload)
+    },
+    UPDATE_POST(state, payload){
+      state.post = payload
+      console.log(payload)
+      // router.push({ name: 'postDetail', params: { postId: payload.id } })
     }
   },
   actions: {
+    updatePost({ commit }, postResponse) {
+      const API_URL = `http://localhost:9999/api/post`
+      axios({
+        url: API_URL,
+        method: 'PUT',
+        params: postResponse
+      }).then(() => {
+        commit('UPDATE_POST', postResponse)
+        router.push({ name: 'postDetail', params: { postId: postResponse.id } })
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
   },
   modules: {
   }
