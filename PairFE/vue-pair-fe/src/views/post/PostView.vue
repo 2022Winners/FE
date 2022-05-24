@@ -1,14 +1,20 @@
 <template>
   <div>
     <h2>포스트 뷰</h2>
-    <router-view/>
+    <post-list></post-list>
+    
+        
   </div>
   
 </template>
 
 <script>
+import PostList from '@/components/post/PostList.vue'
 export default {
-   name: "PostView"
+   name: "PostView",
+   components: {
+     PostList,
+   }
 }
 </script>
 
