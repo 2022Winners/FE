@@ -2,10 +2,10 @@ import {api} from '@/api/index'
 const REST_API = `http://localhost:9999`
 
 
-//POST 등록
-export function createPost(post) {
-    return api.post(`${REST_API}/api/post`, post)
-} 
+// //POST 등록
+// export function createPost(post) {
+//     return api.post(`${REST_API}/api/post`,{ headers: { 'Content-Type': 'multipart/form-data' }}, {params : JSON.stringify(post)} )
+// } 
 
 // //POST 수정
 // export function updatePost(formData) {
