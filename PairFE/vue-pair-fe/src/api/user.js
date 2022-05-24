@@ -9,7 +9,7 @@ export function join(userData) {
 
 //유저 로그인
 export function login(loginId, loginPw) {
-    return api.post(`${REST_API}/api/user/login`, loginId, loginPw)
+    return api.post(`${REST_API}/api/user/login`, null, {params:{loginId, loginPw}})
 }
 
 //유저 수정
