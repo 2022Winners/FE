@@ -4,7 +4,7 @@ const REST_API = `http://localhost:9999`
 
 //POST 등록
 export function createPost(post) {
-    return api.post(`${REST_API}/api/post`, post)
+    return api.post(`${REST_API}/api/post`, null,  post)
 } 
 
 //POST 수정

@@ -28,7 +28,6 @@ const routes = [
   },
   {
     path: '/post',
-    name: 'post',
     component: PostView,
     children: [
       {
