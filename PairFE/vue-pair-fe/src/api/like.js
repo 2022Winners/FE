@@ -8,7 +8,7 @@ export function createLike(like) {
 } 
 
 //like 삭제
-export function deleteLike(like) {
-    return api.delete(`${REST_API}/api/like`, like)
+export function deleteLike(userId, postId) {
+    return api.delete(`${REST_API}/api/like?userId=${userId}&&postId=${postId}`)
 }
 
