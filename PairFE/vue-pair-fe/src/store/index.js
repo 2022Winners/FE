@@ -47,6 +47,21 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    createPost({ commit }, newPost){
+      commit
+      const API_URL = `http://localhost:9999/api/post`
+      axios({
+        url: API_URL,
+        method: 'POST',
+        params: newPost
+      }).then(() => {
+        router.push({ name: 'postList'})
+      }).catch((err) => {
+        console.log(err)
+      })
+
+
+    }
   },
   modules: {
   }
