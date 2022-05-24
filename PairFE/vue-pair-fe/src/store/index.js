@@ -59,7 +59,19 @@ export default new Vuex.Store({
       }).catch((err) => {
         console.log(err)
       })
-
+    },
+    createLike({commit}, newLike){
+      commit
+      const API_URL = `http://localhost:9999/api/like`
+      axios({
+        url: API_URL,
+        method: 'POST',
+        params: newLike
+      }).then(() => {
+        
+      }).catch((err) => {
+        console.log(err)
+      })
 
     }
   },

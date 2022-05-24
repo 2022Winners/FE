@@ -30,9 +30,9 @@
                   <span>{{post.channel }}</span><br>
                   <div style="display:flex; justify-content: space-between; ">
                     <span style="margin-top:6px">조회수 {{post.viewCnt }}</span>
-                  <span v-show="post.islike"><v-btn class="likebtn"
+                  <span v-show="post.islike"><v-btn @click="deletelike(post)"
                    icon color="pink" ><v-icon >mdi-heart</v-icon></v-btn></span>
-                   <span v-show="!post.islike"><v-btn class="likebtn"
+                   <span v-show="!post.islike"><v-btn @click="createlike(post)"
                    icon color="black" ><v-icon >mdi-heart</v-icon></v-btn></span>
                   </div>
                 </v-card-text>
@@ -70,6 +70,7 @@
 import {mapState} from 'vuex'
 import {getPostList} from "@/api/post";
 import {getPartList} from "@/api/post";
+import {deleteLike} from "@/api/like";
 export default {
   name: "PostList",
   data(){
@@ -109,7 +110,20 @@ export default {
     },
     create(){
         this.$router.push({name: 'postCreate'})
-    }
+    },
+    createlike(post){
+      post.islike = !post.islike
+      let newLike = {
+        userId: this.user.id,
+        postId: post.id
+      }
+      this.$store.dispatch("createLike", newLike)
+    },
+    async deletelike(post){
+       post.islike = !post.islike
+      await deleteLike(this.user.id, post.id);
+    },
+    
   }
 
 }
