@@ -1,8 +1,8 @@
 <template>
   <div>
       <h4 class="toplisttag" >지금 핫한 영상</h4>
-         <div id="toplist" >
-           <v-card v-for="post in posts" :key="post.id" height="400px" style="margin: 8px; width: 20%">
+         <div id="toplist"  style="width: 1200px">
+           <v-card v-for="post in posts" :key="post.id" height="400px" style="margin: 8px; width: 280px">
            <template slot="progress">
          <v-progress-linear
            color="deep-purple"
@@ -11,20 +11,19 @@
           ></v-progress-linear>
            </template>
            
-                <v-img
-           height="250" 
-           v-bind:src="`http://img.youtube.com/vi/${post.videoId}/0.jpg`" 
+                <v-img 
+              v-bind:src="`http://img.youtube.com/vi/${post.videoId}/0.jpg`" 
             ></v-img>
          
-                <v-card-title id="cardtitle"><router-link id="router" :to="`/post/detail/${post.id}`">{{post.title}}</router-link></v-card-title>
-                <v-card-text>
+                <v-card-title id="cardtitle-toplist"><router-link id="router" :to="`/post/detail/${post.id}`">{{post.title}}</router-link></v-card-title>
+                <v-card-text id="cardtext-toplist" >
                   <span>{{post.channel }}</span><br>
                   <div style="display:flex; justify-content: space-between; ">
-                    <span style="margin-top:6px">조회수 {{post.viewCnt }}</span>
+                    <span style="margin-top:10px">조회수 {{post.viewCnt }}</span>
                   <span v-show="post.islike"><v-btn @click="deletelike(post)"
-                   icon color="pink" ><v-icon >mdi-heart</v-icon></v-btn></span>
+                   icon color="pink" large ><v-icon >mdi-heart</v-icon></v-btn></span>
                    <span v-show="!post.islike"><v-btn @click="createlike(post)"
-                   icon color="black" ><v-icon >mdi-heart</v-icon></v-btn></span>
+                   icon color="black" large><v-icon >mdi-heart</v-icon></v-btn></span>
                   </div>
                 </v-card-text>
            </v-card>
@@ -84,6 +83,20 @@ export default {
 .toplisttag{
     margin-left: 10px;
     margin-top: 10px;
+}
+
+#cardtext-toplist{
+  margin-top: 20px;
+  font-size: large;
+}
+
+#cardtitle-toplist{
+  width: 290px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  margin-top: 15px;
 }
 
 </style>

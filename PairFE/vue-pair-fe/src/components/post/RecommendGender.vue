@@ -3,7 +3,7 @@
       <h4 class="gendertag" v-show="user.gender==1">남성들이 좋아하는 운동</h4>
       <h4 class="gendertag" v-show="user.gender==2">여성들이 좋아하는 운동</h4>
          <div id="genderlist" >
-           <v-card v-for="post in posts" :key="post.id" height="400px" style="margin: 8px; width: 20%">
+           <v-card v-for="post in posts" :key="post.id" id="genderagelikecard" >
            <template slot="progress">
          <v-progress-linear
            color="deep-purple"
@@ -13,19 +13,19 @@
            </template>
            
                 <v-img
-           height="250" 
+            
            v-bind:src="`http://img.youtube.com/vi/${post.videoId}/0.jpg`" 
             ></v-img>
          
-                <v-card-title id="cardtitle"><router-link id="router" :to="`/post/detail/${post.id}`">{{post.title}}</router-link></v-card-title>
-                <v-card-text>
+                <v-card-title id="cardtitle-genderage"><router-link id="router" :to="`/post/detail/${post.id}`">{{post.title}}</router-link></v-card-title>
+                <v-card-text id="cardtext-genderage">
                   <span>{{post.channel }}</span><br>
                   <div style="display:flex; justify-content: space-between; ">
-                    <span style="margin-top:6px">조회수 {{post.viewCnt }}</span>
+                    <span style="margin-top:10px">조회수 {{post.viewCnt }}</span>
                   <span v-show="post.islike"><v-btn @click="deletelike(post)"
-                   icon color="pink" ><v-icon >mdi-heart</v-icon></v-btn></span>
+                   icon color="pink" large ><v-icon >mdi-heart</v-icon></v-btn></span>
                    <span v-show="!post.islike"><v-btn @click="createlike(post)"
-                   icon color="black" ><v-icon >mdi-heart</v-icon></v-btn></span>
+                   icon color="black" large><v-icon >mdi-heart</v-icon></v-btn></span>
                   </div>
                 </v-card-text>
            </v-card>
@@ -86,5 +86,27 @@ export default {
     margin-left: 10px;
     margin-top: 10px;
 }
+
+#cardtext-genderage{
+  
+  font-size: large;
+}
+#genderagelikecard{
+  height: 350px;
+  margin: 8px;
+   width: 250px;
+
+}
+
+
+#cardtitle-genderage{
+  width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  margin-top: 10px;
+}
+
 
 </style>
