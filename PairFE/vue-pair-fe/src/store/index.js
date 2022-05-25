@@ -14,6 +14,11 @@ export default new Vuex.Store({
     likeposts: [],
   },
   getters: {
+    isLogin: (state) => { 
+      if(state.user.id != 0)
+        return true
+      return false
+    }
   },
   mutations: {
     USER_LOGIN(state, payload) {

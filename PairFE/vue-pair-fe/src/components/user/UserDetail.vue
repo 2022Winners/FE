@@ -126,7 +126,7 @@ export default {
       this.$store.commit('USER_LOGOUT')
      
       this.$router.push({name: 'main'})
-      window.location.reload();
+      // window.location.reload();
     },
   }
 }
