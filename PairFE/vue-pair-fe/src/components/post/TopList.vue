@@ -1,7 +1,7 @@
 <template>
   <div>
       <h4 class="toplisttag" >지금 핫한 영상</h4>
-         <div id="toplist"  style="width: 1200px">
+         <div id="toplist"  >
            <v-card v-for="post in posts" :key="post.id" height="400px" style="margin: 8px; width: 280px">
            <template slot="progress">
          <v-progress-linear
@@ -77,12 +77,15 @@ export default {
 #toplist{
   display: flex ;
   flex-flow: wrap;
-  /* justify-content: center; */
+  width: 1400px;
+  margin: auto;
+  justify-content: center;
 }
 
 .toplisttag{
-    margin-left: 10px;
-    margin-top: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+    
 }
 
 #cardtext-toplist{

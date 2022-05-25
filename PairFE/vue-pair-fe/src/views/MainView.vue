@@ -2,12 +2,18 @@
   <div>
     <h2>메인 뷰</h2>
 
-    <div v-show="user.id == 0">
+    <div v-if="user.id == 0">
          <top-list></top-list>
     </div>
-    <div v-show="user.id != 0">
+    <div v-else-if="user.id != 0" id="location">
+      <div>
+         <health-map></health-map>
+      </div>
+      <div>
         <recommend-gender></recommend-gender>
         <recommend-age></recommend-age>
+      </div>
+      
     </div>   
     <router-link to="/post">영상뷰</router-link>
      
@@ -21,13 +27,13 @@ console.log()
 import {mapState} from 'vuex'
 import RecommendGender from "@/components/post/RecommendGender";
 import RecommendAge from "@/components/post/RecommendAge";
- import TopList from "@/components/post/TopList";
+import TopList from "@/components/post/TopList";
+import HealthMap from "@/components/map/HealthMap";
 
 export default {
    name: "MainView",
    components: {
-       RecommendAge, RecommendGender ,
-       TopList
+       RecommendAge, RecommendGender , HealthMap, TopList
    },
    computed: {
     ...mapState([
@@ -38,5 +44,10 @@ export default {
 </script>
 
 <style>
+
+#location{
+  display: flex;
+  gap: 30px;
+}
 
 </style>
