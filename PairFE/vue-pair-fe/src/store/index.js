@@ -14,6 +14,8 @@ export default new Vuex.Store({
     posts: [],
     post: {},
     likeposts: [],
+    followinglist: [],
+    followerlist: [],
   },
   getters: {
     isLogin: (state) => { 
@@ -48,7 +50,23 @@ export default new Vuex.Store({
     GET_LIKEPOSTS(state, payload){
       state.likeposts = payload
     },
-
+    GET_FOLLOWINGS(state, payload){
+      state.followinglist = payload
+    },
+    GET_FOLLOWERS(state, payload){
+      state.followerlist = payload
+    },
+    UN_FOLLOW(state, payload){
+      for(let i = 0; i < state.followinglist.length; i++) {
+        if(state.followinglist[i] === payload)  {
+          state.followinglist.splice(i, 1);
+          i--;
+        }
+      }
+    },
+    PLUS_FOLLOW(state, payload){
+       state.followinglist.push(payload)
+    },
   },
   actions: {
     updatePost({ commit }, postResponse) {
@@ -90,7 +108,32 @@ export default new Vuex.Store({
         console.log(err)
       })
 
-    }
+    },unFollow({commit}, payload){
+      const API_URL = `http://localhost:9999/api/relation`
+      axios({
+        url: API_URL,
+        method: 'DELETE',
+        params: payload.unfollow
+      }).then(() => {
+        commit('UN_FOLLOW', payload.follow)
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    Follow({commit}, payload){
+      const API_URL = `http://localhost:9999/api/relation`
+      axios({
+        url: API_URL,
+        method: 'POST',
+        params: payload.follow
+      }).then(() => {
+        commit('PLUS_FOLLOW', payload.follower)
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    
+
   },
   modules: {
   }
