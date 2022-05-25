@@ -193,7 +193,7 @@
 
     var el = document.createElement('li'),
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
-                '<div class="info">' +
+                '<div class="info" style="background:white !important">' +
                 '   <h5>' + places.place_name + '</h5>';
 
     if (places.road_address_name) {
