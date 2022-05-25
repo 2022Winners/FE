@@ -107,4 +107,11 @@ const router = new VueRouter({
   routes
 })
 
+//네비게이션 가드
+router.beforeEach( async(to, from, next) => { //여기서 모든 라우팅 대기
+  if (to.name !== 'userLogin' && to.name !== 'main' && to.name !== 'userJoin' && sessionStorage.getItem("userId") === null) next({name: 'userLogin'});
+
+  else next();
+})
+
 export default router

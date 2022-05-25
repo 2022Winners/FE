@@ -9,7 +9,7 @@
       <input type="password" id="loginPw" v-model.trim="loginPw" placeholder="비밀번호를 입력하세요."  /> <br />
       <div>{{errMsg}}</div>
       <v-btn color="blue accent-4" style="color:white" @click="login">로그인</v-btn>
-      <v-btn color="blue-grey lighten-5" style="color:white"><router-link :to="`/user/userJoin`">회원가입</router-link></v-btn>
+      <v-btn color="blue-grey lighten-5" style="color:white"><router-link :to="`/user/join`">회원가입</router-link></v-btn>
     </fieldset>
   </div>
 </template>
@@ -27,13 +27,13 @@ export default {
   },
   methods: {
    async login() {
-     try{
+        try{
         const user = await login(this.loginId, this.loginPw)
         this.$store.commit('USER_LOGIN', user.data)
-        sessionStorage.setItem("userId", user.data.id)
+        
         await this.$router.push(`/`)
       }catch(err){
-        this.errMsg = err.response.data.message
+        this.errMsg = err.response.data.errMsg
       }
     },
   }
