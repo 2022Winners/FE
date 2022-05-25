@@ -2,11 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex' 
 import router from '@/router'
 import axios from 'axios'
+import createPersistedState from "vuex-persistedstate"
 
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  plugins: [createPersistedState()],
   state: {
     user: {id:0},
     posts: [],
@@ -31,7 +33,7 @@ export default new Vuex.Store({
       }
     },
     USER_LOGOUT(state) {
-      state.user = {}
+      state.user = {id:0}
       sessionStorage.clear()
     },
     GET_POSTS(state, payload) {
