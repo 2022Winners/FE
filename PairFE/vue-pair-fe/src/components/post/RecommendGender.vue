@@ -17,7 +17,7 @@
            v-bind:src="`http://img.youtube.com/vi/${post.videoId}/0.jpg`" 
             ></v-img>
          
-                <v-card-title class="text-truncate"><router-link id="router" :to="`/post/detail/${post.id}`">{{post.title}}</router-link></v-card-title>
+                <v-card-title id="cardtitle"><router-link id="router" :to="`/post/detail/${post.id}`">{{post.title}}</router-link></v-card-title>
                 <v-card-text>
                   <span>{{post.channel }}</span><br>
                   <div style="display:flex; justify-content: space-between; ">

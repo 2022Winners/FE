@@ -47,6 +47,11 @@ export function getUserLikeList(userId) {
     return api.get(`${REST_API}/api/posts/like?userId=${userId}`);
 }
 
+//User가 좋아하는 PART별 POST LIST
+export function getUserLikePartList(part, userId) {
+    return api.get(`${REST_API}/api/posts/like/${part}?userId=${userId}`);
+}
+
 //조회순 POST LIST
 export function getTopList(userId) {
     return api.get(`${REST_API}/api/posts/top?userId=${userId}`);
