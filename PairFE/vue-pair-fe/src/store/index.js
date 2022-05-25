@@ -8,9 +8,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: {"id" : 1, "gender" : 1, "age" : 20, role : true},
+    user: {id:0},
     posts: [],
     post: {},
+    likeposts: [],
   },
   getters: {
   },
@@ -30,13 +31,14 @@ export default new Vuex.Store({
     },
     GET_DETAILPOST(state, payload){
       state.post = payload
-      console.log(payload)
     },
     UPDATE_POST(state, payload){
       state.post = payload
-      console.log(payload)
-      // router.push({ name: 'postDetail', params: { postId: payload.id } })
-    }
+    },
+    GET_LIKEPOSTS(state, payload){
+      state.likeposts = payload
+    },
+
   },
   actions: {
     updatePost({ commit }, postResponse) {
