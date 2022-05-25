@@ -11,7 +11,7 @@
        
 
          <div id="totallist" >
-           <v-card v-for="post in pagePostList" :key="post.id" height="400px" style="margin: 8px; width: 20%">
+           <v-card v-for="post in pagePostList" :key="post.id" height="410px" style="margin: 8px; width: 300px">
            <template slot="progress">
          <v-progress-linear
            color="deep-purple"
@@ -19,21 +19,17 @@
            indeterminate
           ></v-progress-linear>
            </template>
-           
-                <v-img
-           height="250" 
-           v-bind:src="`http://img.youtube.com/vi/${post.videoId}/0.jpg`" 
-            ></v-img>
-         
-                <v-card-title class="text-truncate"><router-link id="router" :to="`/post/detail/${post.id}`">{{post.title}}</router-link></v-card-title>
-                <v-card-text>
+               <v-img id="img-postlist" v-bind:src="`http://img.youtube.com/vi/${post.videoId}/0.jpg`" 
+              ></v-img>    
+                <v-card-title id="cardtitle-postlist"><router-link id="router" :to="`/post/detail/${post.id}`">{{post.title}}</router-link></v-card-title>
+                <v-card-text id="cardtext-postlist">
                   <span>{{post.channel }}</span><br>
                   <div style="display:flex; justify-content: space-between; ">
-                    <span style="margin-top:6px">조회수 {{post.viewCnt }}</span>
+                    <span style="margin-top:12px">조회수 {{post.viewCnt }}</span>
                   <span v-show="post.islike"><v-btn @click="deletelike(post)"
-                   icon color="pink" ><v-icon >mdi-heart</v-icon></v-btn></span>
+                   icon color="pink" large ><v-icon >mdi-heart</v-icon></v-btn></span>
                    <span v-show="!post.islike"><v-btn @click="createlike(post)"
-                   icon color="black" ><v-icon >mdi-heart</v-icon></v-btn></span>
+                   icon color="black" large><v-icon >mdi-heart</v-icon></v-btn></span>
                   </div>
                 </v-card-text>
            </v-card>
@@ -133,13 +129,16 @@ export default {
 
 #partbtn{
   margin-left: 100px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  gap: 5px;
 }
 
+#img-postlist{
+  /* height: 250px;
+  width: 300px; */
+  object-fit: fill;
 
-.photosize{
-  width: 200px;
-  height: 150px;
 }
 
 #totallist{
@@ -158,6 +157,20 @@ export default {
   margin-left: 80px;
   margin-right: 80px;
   margin-top: 20px;
+}
+
+#cardtext-postlist{
+  margin-top: 20px;
+  font-size: large;
+}
+
+#cardtitle-postlist{
+  width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  margin-top: 15px;
 }
 
 
