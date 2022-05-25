@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import {api} from '@/api/index'
 
 Vue.use(Vuex)
 
@@ -15,8 +15,12 @@ export default new Vuex.Store({
   },
   mutations: {
     USER_LOGIN(state, payload) {
-      state.user = payload
+      state.user = payload.user
       state.isLogin = true
+      sessionStorage.setItem("userId", payload.user.id)
+      sessionStorage.setItem("access-token", payload["access-token"])
+      sessionStorage.setItem("refresh-token", payload["refresh-token"])
+      api.defaults.headers.common['token'] = `Bearer ${payload["access-token"]}`
     },
     GET_POSTS(state, payload) {
       state.posts = payload

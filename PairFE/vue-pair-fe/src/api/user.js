@@ -12,6 +12,11 @@ export function login(loginId, loginPw) {
     return api.post(`${REST_API}/api/user/login`, null, {params:{loginId, loginPw}})
 }
 
+//유저 로그아웃
+export function logout(id) {
+    return api.put(`${REST_API}/api/user/logout`, id)
+}
+
 //유저 수정
 export function updateUser(userData) {
     return api.patch(`${REST_API}/api/user`, userData)

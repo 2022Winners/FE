@@ -30,10 +30,10 @@ export default {
      try{
         const user = await login(this.loginId, this.loginPw)
         this.$store.commit('USER_LOGIN', user.data)
-        sessionStorage.setItem("userId", user.data.id)
+        
         await this.$router.push(`/`)
       }catch(err){
-        this.errMsg = err.response.data.message
+        this.errMsg = err.response.data.errMsg
       }
     },
   }
