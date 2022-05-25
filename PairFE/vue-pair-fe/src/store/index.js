@@ -18,13 +18,16 @@ export default new Vuex.Store({
   mutations: {
     USER_LOGIN(state, payload) {
       state.user = payload.user
-      console.log(payload)
       sessionStorage.setItem("userId", payload.user.id)
       sessionStorage.setItem("userNickname", payload.user.nickname)
       if(payload.image != null){
         sessionStorage.setItem("userImageUri", payload.image.uri)
         sessionStorage.setItem("userImageName", payload.image.name)
       }
+    },
+    USER_LOGOUT(state) {
+      state.user = {}
+      sessionStorage.clear()
     },
     GET_POSTS(state, payload) {
       state.posts = payload
