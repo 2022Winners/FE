@@ -1,27 +1,32 @@
 <template>
     <header>
+    <v-app-bar
+      app
+      color="indigo accent-2"
+      dark
+    >
         <nav class="header-nav">
         <div class="header-logo">
-            <router-link :to="{ name: 'home' }">HOME</router-link>
+            <router-link :to="{ name: 'main' }">HOME</router-link>
         </div>
         <div>
-            <div class="header-item"><router-link to="/board">게시판 목록 </router-link></div>
-            <div class="header-item"><router-link :to="{ name: 'boardCreate' }">게시글 작성 </router-link></div>
-            <div class="header-item" v-if="isUserLogin">
+            <div class="header-item" v-if="isLogin">
                 <div class="header-item">
-                    <router-link to="/mypage">
-                        <div><p class="nickname">{{ this.$store.state.nickname }}님</p></div>
+                    <router-link :to="`/user/${userId}/detail`">
+                        <div><p class="header-item">{{this.nickname}}님</p></div>
                     </router-link>
                 </div>
                 <div class="header-item">
-                    <router-link to="/logout" @click="logoutUser">로그아웃</router-link>
+                    <div @click="userlogout">로그아웃</div>
                 </div>
             </div>
-            <div class="header-item" v-else><router-link to="/login" >로그인 </router-link></div>
+            <div class="header-item" v-else><router-link to="/user/login" >로그인 </router-link></div>
             
         </div>
         </nav>
+         </v-app-bar>
     </header>
+    
 </template>
 
 <script>
@@ -29,17 +34,26 @@ export default {
     name: "AppHeader",
     data() {
         return {
-            src: "",
+            isLogin : false,
+            nickname : "",
+            userId : "",
         };
     },
-    computed: {
-        isUserLogin() {
-            return this.$store.getters.isLogin;
-        },
+    created(){
+        if(sessionStorage.getItem("userNickname")!=null){
+            this.isLogin = true;
+            this.nickname = sessionStorage.getItem("userNickname");
+            this.userId = sessionStorage.getItem("userId");
+        }
     },
     methods : {
-        logoutUser() {
-            this.$store.commit('clearUserData');
+        userlogout(){
+            this.nickname = ""
+            this.userId = ""
+            this.isLogin = false;
+            this.$store.commit('USER_LOGOUT')
+            this.$router.push({name: 'main'})
+            window.location.reload();
         },
     },
 }

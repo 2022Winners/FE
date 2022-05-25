@@ -31,7 +31,8 @@ export default {
         const user = await login(this.loginId, this.loginPw)
         this.$store.commit('USER_LOGIN', user.data)
         
-        await this.$router.push(`/`)
+        this.$router.push({name: 'main'})
+        window.location.reload();
       }catch(err){
         this.errMsg = err.response.data.errMsg
       }
