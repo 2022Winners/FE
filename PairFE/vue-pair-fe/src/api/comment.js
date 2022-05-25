@@ -2,7 +2,7 @@ import {api} from '@/api/index'
 const REST_API = `http://localhost:9999`
 
 
-//Comment 등록 - requestbody로 작성되어 있어서 수정 필요!
+//Comment 등록
 export function createComment(comment) {
     return api.post(`${REST_API}/api/comment`, comment)
 } 

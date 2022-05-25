@@ -10,10 +10,10 @@
             <router-link :to="{ name: 'main' }">HOME</router-link>
         </div>
         <div>
-            <div class="header-item" v-if="isLogin">
+            <div class="header-item" v-if="checkLogin">
                 <div class="header-item">
                     <router-link :to="`/user/${userId}/detail`">
-                        <div><p class="header-item">{{this.nickname}}님</p></div>
+                        <div><p class="header-item">{{nickname}}님</p></div>
                     </router-link>
                 </div>
                 <div class="header-item">
@@ -34,18 +34,29 @@ export default {
     name: "AppHeader",
     data() {
         return {
-            isLogin : false,
-            nickname : "",
-            userId : "",
+            // nickname : "",
+            // userId : "",
         };
     },
-    created(){
-        if(sessionStorage.getItem("userNickname")!=null){
-            this.isLogin = true;
-            this.nickname = sessionStorage.getItem("userNickname");
-            this.userId = sessionStorage.getItem("userId");
+    computed: {
+        checkLogin() {
+            console.log(this.$store.getters.isLogin)
+            return this.$store.getters.isLogin;
+        },
+        nickname() {
+            return sessionStorage.getItem("userNickname");
+        },
+        userId() {
+            return sessionStorage.getItem("userId");
         }
     },
+    // created(){
+    //     if(sessionStorage.getItem("userNickname")!=null){
+    //         this.isLogin = true;
+    //         this.nickname = sessionStorage.getItem("userNickname");
+    //         this.userId = sessionStorage.getItem("userId");
+    //     }
+    // },
     methods : {
         userlogout(){
             this.nickname = ""
@@ -53,7 +64,7 @@ export default {
             this.isLogin = false;
             this.$store.commit('USER_LOGOUT')
             this.$router.push({name: 'main'})
-            window.location.reload();
+            // window.location.reload();
         },
     },
 }
