@@ -30,41 +30,31 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
     name: "AppHeader",
-    data() {
-        return {
-            // nickname : "",
-            // userId : "",
-        };
-    },
+
     computed: {
         checkLogin() {
-            console.log(this.$store.getters.isLogin)
             return this.$store.getters.isLogin;
         },
+        ...mapState([
+            "user"
+        ]),
         nickname() {
-            return sessionStorage.getItem("userNickname");
+            return this.user.nickname;
         },
         userId() {
-            return sessionStorage.getItem("userId");
+           return this.user.id;
         }
     },
-    // created(){
-    //     if(sessionStorage.getItem("userNickname")!=null){
-    //         this.isLogin = true;
-    //         this.nickname = sessionStorage.getItem("userNickname");
-    //         this.userId = sessionStorage.getItem("userId");
-    //     }
-    // },
+
     methods : {
         userlogout(){
-            this.nickname = ""
-            this.userId = ""
             this.isLogin = false;
             this.$store.commit('USER_LOGOUT')
             this.$router.push({name: 'main'})
-            // window.location.reload();
         },
     },
 }

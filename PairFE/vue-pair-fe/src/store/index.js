@@ -11,6 +11,7 @@ export default new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
     user: {id:0},
+    image: {},
     posts: [],
     post: {},
     likeposts: [],
@@ -27,16 +28,13 @@ export default new Vuex.Store({
   mutations: {
     USER_LOGIN(state, payload) {
       state.user = payload.user
-      sessionStorage.setItem("userId", payload.user.id)
-      sessionStorage.setItem("userNickname", payload.user.nickname)
       if(payload.image != null){
-        sessionStorage.setItem("userImageUri", payload.image.uri)
-        sessionStorage.setItem("userImageName", payload.image.name)
+        state.image = payload.image
       }
     },
     USER_LOGOUT(state) {
       state.user = {id:0}
-      sessionStorage.clear()
+      state.image = {}
     },
     GET_POSTS(state, payload) {
       state.posts = payload

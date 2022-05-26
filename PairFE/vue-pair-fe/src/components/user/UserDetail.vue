@@ -46,7 +46,7 @@
     </template>
   </v-simple-table>
     </div>
-    <div style="width: 1100px; margin: auto;" id="buttonarea">
+    <div v-if="user.id===userDetail.id" style="width: 1100px; margin: auto;" id="buttonarea">
       <v-btn color="yellow darken-2" style="color:white"><router-link :to="`/user/${userDetail.id}/update`">수정</router-link></v-btn>
        <v-dialog
       v-model="dialog"
@@ -91,26 +91,33 @@
 
   </div>
 </template>
-
 <script>
+import {mapState} from 'vuex'
 import {getUser} from "@/api/user";
 import {deleteUser} from "@/api/user";
 export default {
   name: "UserDetail",
   data(){
     return{
-      dialog : false,
-      image : {
-      },
-      userDetail : {},
+      dialog: false,
+      image: {},
+      userDetail: {},
+      detailId: "",
     }
   },
+  computed: {
+    ...mapState([
+      "user"
+    ])
+  },
   created(){
-    this.getDetailUser(sessionStorage.getItem("userId"));
+    const pathName = new URL(document.location).pathname.split("/");
+    this.detailId = pathName[pathName.length-2]
+    this.getDetailUser(this.detailId);
   },
   methods : {
-    async getDetailUser(userId){
-      const getData = await getUser(userId);
+    async getDetailUser(detailId){
+      const getData = await getUser(detailId);
       this.userDetail = getData.data.user
       this.image = getData.data.image
       console.log(this.userDetail) 
@@ -119,14 +126,13 @@ export default {
       this.$router.push({name: 'userUpdate'})
     },
     userdelete(){
-      this.UserDelete(sessionStorage.getItem("userId"))
+      this.UserDelete(this.user.id)
     },
     async UserDelete(userId){
       await deleteUser(userId)
       this.$store.commit('USER_LOGOUT')
      
       this.$router.push({name: 'main'})
-      // window.location.reload();
     },
   }
 }
