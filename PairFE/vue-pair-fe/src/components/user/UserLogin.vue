@@ -1,17 +1,15 @@
 <template>
-  <div>
-    <h2>유저 로그인</h2>
-    <fieldset>
-      <legend>로그인 폼</legend>
-      <label for="loginId">아이디</label><br>
-      <input type="text" id="loginId" v-model.trim="loginId" placeholder="아이디를 입력하세요."  /> <br />
-      <label for="loginPw">비밀번호</label><br>
-      <input type="password" id="loginPw" v-model.trim="loginPw" placeholder="비밀번호를 입력하세요."  /> <br />
-      <div>{{errMsg}}</div>
-      <v-btn color="blue accent-4" style="color:white" @click="login">로그인</v-btn>
-      <v-btn color="blue-grey lighten-5" style="color:white"><router-link :to="`/user/join`">회원가입</router-link></v-btn>
-    </fieldset>
-  </div>
+     <div class="container loginform">
+      <b-form-group label="아이디" label-for="loginId">
+        <b-form-input id="loginId" v-model.trim="loginId" placeholder="아이디를 입력하세요."></b-form-input>
+      </b-form-group>
+      <b-form-group label="비밀번호" label-for="loginPw">
+        <b-form-input id="loginPw" type="password" v-model.trim="loginPw" placeholder="비밀번호를 입력하세요."></b-form-input>
+      </b-form-group>
+       <div>{{errMsg}}</div>
+       <v-btn color= "accent" @click="login">로그인</v-btn>
+      <v-btn color="primary" style="text-decoration:none"><router-link :to="`/user/join`">회원가입</router-link></v-btn>
+    </div>
 </template>
 
 <script>
@@ -38,6 +36,9 @@ export default {
   }
 };
 </script>
-
 <style>
-</style>
+.loginform{
+  line-height: 30px;
+  padding: 100px 100px;
+}
+</style>>

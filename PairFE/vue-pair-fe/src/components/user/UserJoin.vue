@@ -63,17 +63,32 @@
         value=0
       ></v-radio>
     </v-radio-group>
-    <v-select
-      :items="ages"
-      label="연령대"
-      v-model="age"
-      item-text="name"
-      item-value="value"
-      solo>
-    </v-select>
+    <v-menu transition="slide-x-transition">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="primary"
+          class="ma-2"
+          v-bind="attrs"
+          v-on="on"
+        >
+          연령대
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item
+          v-for="(n,index) in ages"
+          v-model="age"
+          :key="index"
+          link
+        >
+          <v-list-item-title v-text="n.name"></v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+
     <v-btn
       :disabled="!valid"
-      color="success"
+      color="accent"
       class="mr-4"
       @click="join"
     >
@@ -166,6 +181,7 @@ export default {
         formData.append("gender", this.gender);
         formData.append("age", this.age);
         await join(formData)
+        alert("회원가입이 완료되었습니다")
         this.$router.push({name: 'userLogin'})
       }
     },

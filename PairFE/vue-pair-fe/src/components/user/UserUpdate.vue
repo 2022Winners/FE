@@ -1,21 +1,15 @@
 <template>
   <div class="container">
-    <h2>내 정보 수정</h2>
     <v-simple-table style="width: 1000px; display: block; margin: auto">
     <template v-slot:default>
-      <thead>
-        <tr>
-          <th v-if="user.emageId!= null && user.emageId!= 0 " class="text-center">
-            프로필 사진
-          </th>
-          <th class="text-center">
-            항목
-          </th>
-          <th class="text-center">
-            내용
-          </th>
-        </tr>
-      </thead>
+        <div  v-if="user.imageId!= null && user.imageId!= 0"> 
+            <div class="box"><v-img style="display: block; margin: auto; max-width: 350px;" :src="`${image.uri}`">
+              </v-img></div> 
+            </div>
+          <div  v-else> 
+             <div class="box"><v-img style="display: block; margin: auto; max-width: 350px;" src="https://2022winners.s3.ap-northeast-2.amazonaws.com/ex.png">
+             </v-img></div>
+          </div>
       <tbody class="text-center">
          <tr>
            <td v-if="user.emageId!= null && user.emageId!= 0 " rowspan="6"> <v-img style="display: block; margin: auto; max-width: 150px;" :src="`${image.uri}`"></v-img> </td>
@@ -63,7 +57,7 @@
       ></v-text-field>
 
       <div>더 정확한 영상을 추천을 위해 알려주세요(선택)</div>
-    <v-radio-group v-model="getGender" row :checked="gender">
+    <v-radio-group v-model="gender" row>
       <v-radio
         label="남"
         value=1
@@ -80,21 +74,21 @@
     <v-select
       :items="ages"
       label="연령대"
-      v-model="getAge"
+      v-model="age"
       item-text="name"
       item-value="value"
       solo>
     </v-select>
     <v-btn
       :disabled="!valid"
-      color="success"
+      color="primary"
       class="mr-4"
       @click="update"
     >
       수정하기
     </v-btn>
       <v-btn
-      color="success"
+      color="error"
       class="mr-4"
       @click="cancel"
     >
@@ -148,19 +142,11 @@ export default {
       },
       ...mapState(['user']),
       ...mapState(['image']),
-      getGender(){
-        return this.gender
-      },
-      getAge(){
-        return this.age
-      },
     },
   created() {
     this.nickname = this.user.nickname
     this.gender = this.user.gender
     this.age = this.user.age
-    console.log(this.gender)
-    console.log(this.age)
    },
 
   methods: { 

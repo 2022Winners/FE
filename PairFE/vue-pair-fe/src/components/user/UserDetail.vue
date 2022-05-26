@@ -1,27 +1,21 @@
 <template>
-  <div>    
+  <div class="try">    
     <div>
-      <v-simple-table style="width: 1000px; display: block; margin: auto">
+        <v-container style="display: block; margin: auto">
+          <div  v-if="userDetail.imageId!= null && userDetail.imageId!= 0"> 
+            <div class="box"><v-img style="display: block; margin: auto; max-width: 350px;" :src="`${image.uri}`">
+              </v-img></div> 
+              <h2 class="nickname">{{ userDetail.nickname }}</h2>
+            </div>
+          <div  v-else> 
+             <div class="box"><v-img style="display: block; margin: auto; max-width: 350px;" src="https://2022winners.s3.ap-northeast-2.amazonaws.com/ex.png">
+             </v-img></div>
+          <h2 class="nickname">{{ userDetail.nickname }}</h2>
+          </div>
+       
+    <v-simple-table style="width: 1000px; display: block; margin: auto">
     <template v-slot:default>
-      <thead>
-        <tr>
-          <th v-if="userDetail.imageId!= null && userDetail.imageId!= 0 " class="text-center">
-            프로필 사진
-          </th>
-          <th class="text-center">
-            항목
-          </th>
-          <th class="text-center">
-            내용
-          </th>
-        </tr>
-      </thead>
       <tbody class="text-center">
-        <tr>
-          <td  v-if="userDetail.imageId!= null && userDetail.imageId!= 0" rowspan="6"> <v-img style="display: block; margin: auto; max-width: 150px;" :src="`${image.uri}`"></v-img> </td>
-          <td>닉네임</td>
-          <td>{{ userDetail.nickname }}</td>
-        </tr>
          <tr>
           <td>아이디</td>
           <td>{{userDetail.loginId}}</td>
@@ -46,9 +40,10 @@
       </tbody>
     </template>
   </v-simple-table>
+     </v-container>
     </div>
     <div v-if="user.id===userDetail.id" style="width: 1100px; margin: auto;" id="buttonarea">
-      <v-btn color="yellow darken-2" style="color:white"><router-link :to="`/user/update/${user.id}`">수정</router-link></v-btn>
+      <v-btn color="primary" style="color:white"><router-link :to="`/user/update/${user.id}`"> 수정</router-link></v-btn>
       <v-dialog
       v-model="dialog"
       persistent
@@ -71,15 +66,15 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="green darken-1"
-            text
+            color="accent"
+      
             @click="userdelete"
           >
             탈퇴하기
           </v-btn>
+          
           <v-btn
-            color="green darken-1"
-            text
+            color="error"
             @click="dialog = false"
           >
             취소하기
@@ -87,6 +82,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    
     </div>
 
 
@@ -120,7 +116,6 @@ export default {
     async getDetailUser(detailId){
       const getData = await getUser(detailId);
       this.userDetail = getData.data.user
-      console.log(this.userDetail) 
       if(this.userDetail.imageId!=0)
         this.image = getData.data.image
     },
@@ -146,6 +141,20 @@ export default {
   display: flex;
   justify-content: center;
   
+}
+.box {
+    width: 250px;
+    height: 250px; 
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.try{
+  margin: auto;
 }
 
 </style>
