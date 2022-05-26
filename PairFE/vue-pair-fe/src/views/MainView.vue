@@ -9,10 +9,13 @@
       <div>
          <health-map></health-map>
       </div>
-      <div>
+      <div v-if="user.gender!=0 || user.age != 0">
         <recommend-gender></recommend-gender>
         <recommend-age></recommend-age>
-      </div>      
+      </div>
+      <div v-else-if="user.age == 0 && user.age == 0">
+        <top-list></top-list>
+      </div>     
     </div>   
     <router-link to="/post">영상뷰</router-link>
      
@@ -29,12 +32,10 @@ import RecommendAge from "@/components/post/RecommendAge";
 import TopList from "@/components/post/TopList";
 import HealthMap from "@/components/map/HealthMap";
 
-
 export default {
    name: "MainView",
    components: {
-       RecommendAge, RecommendGender , HealthMap,
-        TopList,
+       RecommendAge, RecommendGender , HealthMap, TopList
    },
    computed: {
     ...mapState([
@@ -51,4 +52,6 @@ export default {
   gap: 30px;
 }
 
+
 </style>
+

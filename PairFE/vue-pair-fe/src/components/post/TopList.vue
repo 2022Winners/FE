@@ -77,7 +77,7 @@ export default {
 #toplist{
   display: flex ;
   flex-flow: wrap;
-  width: 1400px;
+  width: 1200px;
   margin: auto;
   justify-content: center;
 }
