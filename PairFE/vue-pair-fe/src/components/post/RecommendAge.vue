@@ -1,6 +1,7 @@
 <template>
   <div>
-      <h4 class="agetag" >{{user.age}}대가 좋아하는 운동</h4>
+      <h4 class="agetag"  v-show="user.age!=0">{{user.age}}대가 좋아하는 운동</h4>
+      <h4 class="gendertag" v-show="user.age==0">전연령대가 좋아하는 운동</h4>
          <div id="agelist" >
            <v-card v-for="post in posts" :key="post.id" id="genderagelikecard">
            <template slot="progress">

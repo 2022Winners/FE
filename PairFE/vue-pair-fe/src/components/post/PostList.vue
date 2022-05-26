@@ -39,25 +39,18 @@
       <div>
       <v-btn v-show="user.role" color="yellow darken-2" style="color:white" @click="create">영상 등록</v-btn>
       </div>
-      <div>
-        <select v-model="mode">
-        <option value="1">제목</option>
-        <option value="2">내용</option>
-        <option value="3">제목+내용</option>
-      </select>
-      <input type="text" v-model="keyword">
-      <v-btn color="pink lighten-2" style="color:white" @click="search">검색</v-btn>
+      <div id="searcharea">
+        <b-form-select v-model="mode" :options="options" style="width: 150px"></b-form-select>
+        <b-form-input type="text" v-model="keyword" placeholder="검색어를 입력하세요" style="width: 175px"></b-form-input>
+        <v-btn color="pink lighten-2" style="color:white" @click="search">검색</v-btn>
       </div>
-    </div>
-    
+    </div>  
       <b-pagination
       v-model="currentPage"
       pills :total-rows="rows"
       :per-page="perPage"
       aria-controls="my-table"
-      align="center"
-      
-      
+      align="center"     
     ></b-pagination>  
   </div>
 </template>
@@ -72,9 +65,14 @@ export default {
   data(){
     return{
       keyword: "",
-      mode: "",
+      mode: 3,
       currentPage: 1,
-      perPage: 4
+      perPage: 4,
+      options: [
+          { value: 1, text: '제목'},
+          { value: 2, text: '파트'},
+          { value: 3, text: '제목+파트'},
+      ],
     }
   },
     computed: {
@@ -171,6 +169,13 @@ export default {
   white-space: nowrap;
   display: block;
   margin-top: 15px;
+}
+
+#searcharea{
+  display: flex;
+  gap: 3px;
+  
+
 }
 
 

@@ -2,6 +2,7 @@
   <div>
       <h4 class="gendertag" v-show="user.gender==1">남성들이 좋아하는 운동</h4>
       <h4 class="gendertag" v-show="user.gender==2">여성들이 좋아하는 운동</h4>
+      <h4 class="gendertag" v-show="user.gender==0">모든 성별이 좋아하는 운동</h4>
          <div id="genderlist" >
            <v-card v-for="post in posts" :key="post.id" id="genderagelikecard" >
            <template slot="progress">
