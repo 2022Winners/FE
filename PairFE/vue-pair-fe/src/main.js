@@ -3,6 +3,7 @@ import App from './App.vue'
 import store from './store'
 import router from './router'
 import vuetify from './plugins/vuetify'
+import Vuelidate from "vuelidate";
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
@@ -14,6 +15,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
+Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
 
