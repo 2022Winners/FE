@@ -6,15 +6,13 @@
          <top-list></top-list>
     </div>
     <div v-else-if="user.id != 0" id="location">
-        <user-follow></user-follow>
-      <!-- <div>
+      <div>
          <health-map></health-map>
       </div>
       <div>
         <recommend-gender></recommend-gender>
         <recommend-age></recommend-age>
-      </div> -->
-      
+      </div>      
     </div>   
     <router-link to="/post">영상뷰</router-link>
      
@@ -26,17 +24,17 @@
 <script>
 console.log()
 import {mapState} from 'vuex'
-// import RecommendGender from "@/components/post/RecommendGender";
-// import RecommendAge from "@/components/post/RecommendAge";
+import RecommendGender from "@/components/post/RecommendGender";
+import RecommendAge from "@/components/post/RecommendAge";
 import TopList from "@/components/post/TopList";
-// import HealthMap from "@/components/map/HealthMap";
-import UserFollow from "@/components/user/UserFollow";
+import HealthMap from "@/components/map/HealthMap";
+
 
 export default {
    name: "MainView",
    components: {
-      //  RecommendAge, RecommendGender , HealthMap,
-        TopList,UserFollow
+       RecommendAge, RecommendGender , HealthMap,
+        TopList,
    },
    computed: {
     ...mapState([
