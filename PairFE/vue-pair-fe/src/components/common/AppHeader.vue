@@ -12,7 +12,7 @@
         <div>
             <div class="header-item" v-if="checkLogin">
                 <div class="header-item">
-                    <router-link :to="`/user/${userId}/detail`">
+                    <router-link :to="`/user/detail/${userId}`">
                         <div><p class="header-item">{{nickname}}님</p></div>
                     </router-link>
                 </div>
