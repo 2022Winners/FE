@@ -48,7 +48,7 @@
         required
       ></v-text-field>
 
-      <div>더 정확한 영상을 추천해드릴 수 있도록 기입해주세요(선택 사항)</div>
+      <div>더 정확한 영상을 추천을 위해 알려주세요(선택)</div>
     <v-radio-group v-model="gender" row>
       <v-radio
         label="남"
@@ -96,19 +96,19 @@ export default {
       id: "",
       loginPw: "",
       loginPwRules: [
-        v => !!v.trim() || 'pw is required',
-        v => (v.trim() && v.trim().length <= 16 &&  v.trim().length >= 8) || '8자~16자 사이로 입력해주세요.',
+        v => !!v.trim() || '비밀번호는 필수 기입 항목입니다.',
+        v => (v.trim() && v.trim().length <= 16 &&  v.trim().length >= 8) || '8자~16자 이내로 기입해주세요.',
       ],
       checkLoginPw: "",
       email: "",
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v.trim()) || 'E-mail must be valid',
+        v => !!v || '이메일은 필수 기입 항목입니다.',
+        v => /.+@.+\..+/.test(v.trim()) || '이메일 주소 형식에 맞게 기입해주세요.',
       ],
       nickname: "",
       nicknameRules: [
-        v => !!v.trim() || 'nickname is required',
-        v => (v.trim() && v.trim().length <= 10) || '10자 이내로 입력해주세요.',
+        v => !!v.trim() || '닉네임은 필수 기입 항목입니다.',
+        v => (v.trim() && v.trim().length <= 10) || '10자 이내로 기입해주세요.',
       ],
       gender: 0,
       age: 0,
@@ -131,11 +131,11 @@ export default {
       idRules () {
         const rules = []
 
-        const rule = v => !!v.trim() || '아이디를 입력해주세요.'
+        const rule = v => !!v.trim() || '아이디는 필수 기입 항목입니다.'
         rules.push(rule)
-        const lenRule = v => (v.trim() && v.trim().length <= 15) || '15자 이내로 입력해주세요.'
+        const lenRule = v => (v.trim() && v.trim().length <= 15) || '15자 이내로 기입해주세요.'
         rules.push(lenRule)
-        const dupRule = v => this.checkLoginId(v.trim()) || '동일한 ID가 존재합니다'
+        const dupRule = v => this.checkLoginId(v.trim()) || '이미 사용 중인 아이디입니다.'
         rules.push(dupRule)
         return rules
       },
