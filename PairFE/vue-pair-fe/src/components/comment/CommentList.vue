@@ -173,14 +173,16 @@ export default {
     },
     async updateC(cId) {
       let commentData = {
-        content: this.updateComment
+        id: cId,
+        content: this.commentContent
       }
       await updateComment(cId, commentData)
       window.location.reload()
     },
     async updateR(rId) {
       let replyData = {
-         content: this.updateReply
+         id: rId,
+         content: this.replyContent
       }
       await updateReply(rId, replyData)
       window.location.reload()
@@ -225,7 +227,7 @@ export default {
         writer: this.user.nickname,
         postId: pId,
         commentId: cId,
-        content: this.newComment
+        content: this.newReply
       }
       console.log(replyData)
       await createReply(replyData)
