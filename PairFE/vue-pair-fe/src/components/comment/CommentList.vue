@@ -20,6 +20,7 @@
                           @click:append="toggleMarkerC"
                           @click:append-outer="sendMessageC"
                           @click:clear="clearMessageC"
+                          @keypress.enter="sendMessageC"
                         ></v-text-field>
                       </v-col>
                     </v-row>
@@ -31,14 +32,14 @@
             <v-expansion-panel-header>
               <v-row no-gutters style="text-align:center">
                 <v-col cols="1"> {{ idx+1 }} </v-col>
-                <v-col cols="1"> {{ comment.writer }} </v-col>
-                <v-col cols="7" v-if="checkWriter"> <div v-if="getCommentId === comment.id"><input type="text" style="border:2px solid blue" @click.stop="" v-model="commentContent"><span><v-btn @click.stop="updateC(comment.id)"
+                <v-col cols="2"> &nbsp;&nbsp; {{ comment.writer }} </v-col>
+                <v-col cols="6" v-if="checkWriter"> <div v-if="getCommentId === comment.id"><textarea style="border:2px solid blue; width:300px; max-width:500px; height: 80px;" @click.stop="" v-model="commentContent"></textarea><span><v-btn @click.stop="updateC(comment.id)"
                       icon color="green"><v-icon>mdi-check</v-icon></v-btn><v-btn @click.stop="deleteC(comment.id)"
                       icon color="red"><v-icon>mdi-delete</v-icon></v-btn><v-btn @click.stop="cancelC()"
                       icon color="grey"><v-icon>mdi-close-box</v-icon></v-btn></span></div><div v-else>{{ comment.content }} <v-btn @click.stop="updateFormC(comment.userId, comment.id, comment.content)"
-                      icon color="grey"><v-icon>mdi-pencil</v-icon></v-btn></div> </v-col>
-                <v-col v-else  cols="7"> {{ comment.content }} <v-btn @click.stop="updateFormC(comment.userId, comment.id, comment.content)"
-                      icon color="grey"><v-icon>mdi-pencil</v-icon></v-btn> </v-col>
+                      icon color="grey"><v-icon style="font-size:16px">mdi-pencil</v-icon></v-btn></div> </v-col>
+                <v-col v-else cols="6"> {{ comment.content }} <v-btn @click.stop="updateFormC(comment.userId, comment.id, comment.content)"
+                      icon color="grey"><v-icon style="font-size:16px">mdi-pencil</v-icon></v-btn> </v-col>
                 <v-col cols="3"> {{ comment.createdAt }} </v-col>
               </v-row>
             </v-expansion-panel-header>
@@ -59,25 +60,26 @@
                           @click:append="toggleMarkerR"
                           @click:append-outer="sendMessageR(comment.postId, comment.id)"
                           @click:clear="clearMessageR"
+                          @keypress.enter="sendMessageR(comment.postId, comment.id)"
                         ></v-text-field>
                       </v-col>
                     </v-row>
                   </v-container>
                 </v-form>
-                <v-container>
-                  <v-row no-gutters v-for="reply in comment.replyList" :key="reply.id" style="text-align:center; ">
-                    <v-col cols="1"><v-icon>mdi-arrow-right-bottom</v-icon></v-col>
+                <!-- <v-container> -->
+                  <v-row no-gutters v-for="reply in comment.replyList" :key="reply.id" style="text-align:center; font-size:15px ">
+                    <v-col cols="1"><v-icon style="font-size:13px">mdi-arrow-right-bottom</v-icon></v-col>
                     <v-col cols="2"> {{ reply.writer }} </v-col>
-                    <v-col cols="6" v-if="checkReplyWriter"> <div v-if="getReplyId === reply.id"><input type="text" style="border:2px solid blue" @click.stop="" v-model="replyContent"><span><v-btn @click.stop="updateR(reply.id)"
+                    <v-col cols="6" v-if="checkReplyWriter"> <div v-if="getReplyId === reply.id"><textarea style="border:2px solid blue;width:300px; max-width:500px; height: 80px;" @click.stop="" v-model="replyContent"></textarea><span><v-btn @click.stop="updateR(reply.id)"
                               icon color="green"><v-icon>mdi-check</v-icon></v-btn><v-btn @click.stop="deleteR(reply.id)"
                               icon color="red" ><v-icon>mdi-delete</v-icon></v-btn><v-btn @click.stop="cancelR()"
                               icon color="grey"><v-icon>mdi-close-box</v-icon></v-btn></span></div><div v-else>{{ reply.content }} <v-btn @click.stop="updateFormR(reply.userId, reply.id, reply.content)"
-                              icon color="grey"><v-icon>mdi-pencil</v-icon></v-btn></div> </v-col>
+                              icon color="grey"><v-icon style="font-size:16px">mdi-pencil</v-icon></v-btn></div> </v-col>
                     <v-col cols="6" v-else> {{ reply.content }} <v-btn @click.stop="updateFormR(reply.userId, reply.id, reply.content)"
-                              icon color="grey"><v-icon>mdi-pencil</v-icon></v-btn> </v-col>
-                    <v-col cols="3"> {{ reply.createdAt }} </v-col>
+                              icon color="grey"><v-icon style="font-size:16px">mdi-pencil</v-icon></v-btn> </v-col>
+                    <v-col cols="3"> <span>{{ reply.createdAt }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></v-col>
                   </v-row>
-              </v-container>
+              <!-- </v-container> -->
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -248,5 +250,6 @@ export default {
   justify-content: space-between;
   
 }
+
 
 </style>
