@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import MainView from '../views/MainView.vue'
 import PostView from '@/views/post/PostView.vue'
 import UserView from '@/views/user/UserView.vue'
+import AdminView from '@/views/admin/AdminView.vue'
 
 import PostList from '@/components/post/PostList.vue'
 import PostCreate from '@/components/post/PostCreate.vue'
@@ -18,6 +19,8 @@ import UserLikeList from '@/components/user/UserLikeList.vue'
 import UserLogin from '@/components/user/UserLogin.vue'
 import UserUpdate from '@/components/user/UserUpdate.vue'
 import store from '@/store/index'
+
+import PostManagement from '@/components/admin/PostManagement.vue'
 
 
 Vue.use(VueRouter)
@@ -101,6 +104,20 @@ const routes = [
       },
     ]
   },
+  {
+    path: '/admin',
+    name: 'admin', 
+    component: AdminView,
+    children: [
+      {
+        path: "mngt/post/list",
+        name: "postManagement",
+        component: PostManagement
+      },
+      
+    ]
+  }
+
 ]
 
 const router = new VueRouter({
