@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div>    
-        <div id="likepartbtn">
+    <div id="postlikearea">    
+        <div id="likepostbtn">
          <v-btn color="blue accent-4" style="color:white" @click="search">TOTAL</v-btn>
          <v-btn color="pink lighten-2" style="color:white" @click="partsearch">전신</v-btn>
          <v-btn color="yellow darken-2" style="color:white" @click="partsearch">상체</v-btn>
@@ -81,8 +81,9 @@ export default {
       this.$store.dispatch("createLike", newLike)
     },
     async deletelike(post){
-       post.islike = !post.islike
+      
       await deleteLike(this.user.id, post.id);
+      this.search(this.user.id);
     },
     
   }
@@ -92,9 +93,8 @@ export default {
 
 <style >
 
-#likepartbtn{
+#likepostbtn{
   margin-bottom: 10px;
-  margin-left: 9px;
   display: flex;
   gap: 4px;
 }
@@ -108,7 +108,8 @@ export default {
   flex-flow: wrap;
   justify-content: flex-start;
   gap: 10px 1%;
-  width: 1000px;
+  width: 1300px;
+  margin: auto;
 }
 #router{
   text-decoration: none;
@@ -122,6 +123,15 @@ export default {
   white-space: nowrap;
   display: block;
   margin-top: 15px;
+}
+
+#postlikearea{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 1300px;
+  margin-top: 20px;
+
 }
 </style>
 

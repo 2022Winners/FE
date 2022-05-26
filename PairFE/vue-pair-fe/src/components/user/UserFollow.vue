@@ -1,7 +1,12 @@
 <template>
   <div id="followtables"> 
-    <div>
-      <v-simple-table style="width: 500px; display: block;">
+    <div id="follow">
+      <span class="material-icons">
+thumb_up
+</span>
+<v-icon >mdi-thums_up</v-icon>
+      <h4>FOLLOW LIST</h4>
+      <v-simple-table style="width: 600px; display: block;">
     <template v-slot:default>
       <thead>
         <tr id="trheader">
@@ -19,7 +24,7 @@
       <tbody class="text-center">
         <tr v-for="(following, idx) in followinglist" :key="following.id" id="trbody">
           <td>{{idx+1}}</td>
-          <td>{{ following.nickname }}</td>
+          <td><router-link id="router" :to="`/user/detail/${following.id}`">{{following.nickname}}</router-link></td>
           <td><v-btn @click="unfollow(following)"
               icon
               color="blue accent-4"
@@ -32,8 +37,9 @@
     </template>
   </v-simple-table>
     </div>
-    <div>
-      <v-simple-table style="width: 500px; display: block; ">
+    <div id="follow">
+      <h4>FOLLOWER LIST</h4>
+      <v-simple-table style="width: 600px; display: block; ">
     <template v-slot:default>
       <thead>
         <tr id="trheader">
@@ -51,7 +57,7 @@
       <tbody class="text-center" id="trbody">
         <tr v-for="(follower, idx) in followerlist" :key="follower.id" >
           <td>{{idx+1}}</td>
-          <td>{{ follower.nickname }}</td>
+          <td><router-link id="router" :to="`/user/detail/${follower.id}`">{{follower.nickname}}</router-link></td>
           <td><v-btn @click="follow(follower)"
               icon
               color="purple accent-4"
@@ -146,7 +152,13 @@ export default {
 #followtables{
   display: flex;
   gap: 50px;
-  margin: auto; 
+  justify-content:center;
+  margin-top: 30px; 
+}
+
+#follow{
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 
