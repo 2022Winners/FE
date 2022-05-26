@@ -27,12 +27,17 @@
       lng:'',
     };
     },
+
+
+    created(){
+        navigator.geolocation.getCurrentPosition(this.onGeoOkay, this.onGeoError);
+
+    },
   
   
     mounted() {
     const script = document.createElement("script");
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.VUE_APP_KAKAO_MAP_KEY}&libraries=services`;
-    navigator.geolocation.getCurrentPosition(this.onGeoOkay, this.onGeoError);
     /* global kakao */
     script.addEventListener("load", () => {
       kakao.maps.load(this.initMap);
