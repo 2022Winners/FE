@@ -3,8 +3,8 @@ const REST_API = `http://localhost:9999`
 
 //유저 회원가입
 export function join(userData) {
-    // api.defaults.headers
-    return api.post(`${REST_API}/api/user/join`, { headers: { 'Content-Type': 'multipart/form-data' }}, userData)
+   // return api.post(`${REST_API}/api/user/join`, { headers: { 'Content-Type': 'multipart/form-data' }}, userData)
+    return api.post(`${REST_API}/api/user/join`, userData)
 }
 
 //유저 로그인
@@ -14,7 +14,7 @@ export function login(loginId, loginPw) {
 
 //유저 수정
 export function updateUser(userData) {
-    return api.patch(`${REST_API}/api/user`, userData)
+    return api.put(`${REST_API}/api/user`, userData)
 }
 
 //유저 탈퇴
