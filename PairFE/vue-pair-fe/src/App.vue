@@ -1,15 +1,13 @@
 <template>
-  <v-app>
+  <v-app id="app">
    <AppHeader></AppHeader>
     <v-main>
        <!-- <div>
          <br>
-        <v-btn color="blue accent-4" style="color:white">버튼 1</v-btn>
-         <v-btn color="pink lighten-2" style="color:white">버튼 2</v-btn>
-         <v-btn color="yellow darken-2" style="color:white">버튼 3</v-btn>
-         <v-btn color="teal accent-3" style="color:white">버튼 4</v-btn>
-         <v-btn color="purple accent-4" style="color:white">버튼 5</v-btn>
-         <v-btn color="blue-grey lighten-5">버튼 6</v-btn>
+        <v-btn color="primary">버튼 1</v-btn>
+         <v-btn color="secondary" style="color:black" >버튼 2</v-btn>
+         <v-btn color="accent">버튼 3</v-btn>
+         <v-btn color="error">버튼 4</v-btn>
         </div> -->
       <router-view/>
     </v-main>
@@ -28,3 +26,18 @@ export default {
   }),
 };
 </script>
+
+<style>
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'AritaDotum';
+  src: url('https://2022winners.s3.ap-northeast-2.amazonaws.com/AnyConv.com__ARITA4.0_M.woff') format('woff');
+}
+* {
+  font-family: 'AritaDotum';
+}
+</style>
