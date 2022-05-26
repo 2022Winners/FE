@@ -14,7 +14,7 @@ export function updateComment(id, comment) {
 
 //Comment 삭제
 export function deleteComment(id) {
-    return api.delete(`${REST_API}/api/comment/${id}`)
+    return api.get(`${REST_API}/api/comment/${id}`)
 }
 
 //Comment 목록 조회

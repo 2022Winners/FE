@@ -52,7 +52,7 @@
       <v-btn v-show="user.role" color="blue accent-4" style="color:white" @click="postupdate">수정</v-btn>
       <v-btn v-show="user.role" color="pink lighten-2" style="color:white" @click="postdelete">삭제</v-btn>
     </div>
-
+  <div><CommentList v-bind:post-id="this.id"></CommentList></div>
 
 
 
@@ -64,39 +64,42 @@
 import {mapState} from 'vuex'
 import {getPost} from "@/api/post";
 import {deletePost} from "@/api/post";
+import CommentList from '../comment/CommentList.vue';
 export default {
-  name: "PostDetail",
-  data(){
-    return{
-      id : "",
-    }
-  },
-  computed: {
-    ...mapState([
-      "post", "user"
-    ])
-  },
-  created(){
-    const pathName = new URL(document.location).pathname.split("/");
-    this.id = pathName[pathName.length-1]
-    this.getDetilPost(this.id, this.user.id);
-  },
-  methods : {
-    async getDetilPost(){
-      const part = await getPost(this.id, this.user.id);
-      this.$store.commit('GET_DETAILPOST', part.data);   
+    name: "PostDetail",
+    data() {
+        return {
+            id: "",
+        };
     },
-    postupdate(){
-      this.$router.push({name: 'postUpdate'})
+    computed: {
+        ...mapState([
+            "post",
+            "user"
+        ])
     },
-    postdelete(){
-      this.PostDelete(this.id)
+    created() {
+        const pathName = new URL(document.location).pathname.split("/");
+        this.id = pathName[pathName.length - 1];
+        this.getDetilPost(this.id, this.user.id);
     },
-    async PostDelete(){
-      await deletePost(this.id)
-      this.$router.push({name: 'postList'})
+    methods: {
+        async getDetilPost() {
+            const part = await getPost(this.id, this.user.id);
+            this.$store.commit("GET_DETAILPOST", part.data);
+        },
+        postupdate() {
+            this.$router.push({ name: "postUpdate" });
+        },
+        postdelete() {
+            this.PostDelete(this.id);
+        },
+        async PostDelete() {
+            await deletePost(this.id);
+            this.$router.push({ name: "postList" });
+        },
     },
-  }
+    components: { CommentList }
 }
 </script>
 

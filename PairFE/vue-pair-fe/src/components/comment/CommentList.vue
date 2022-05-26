@@ -1,100 +1,239 @@
 <template>
   <div>
-    <div><a v-bind:href="`https://www.youtube.com/embed/${post.videoId}`" target="blank">
-      <v-img style="max-width: 600px; display: block; margin: auto"
-       v-bind:src="`http://img.youtube.com/vi/${post.videoId}/0.jpg`">
-       </v-img></a>
-    </div>
+    <br>
+    <br>
     <div>
-      <v-simple-table style="width: 1000px; display: block; margin: auto">
-    <template v-slot:default>
-      <thead>
-        <tr>
-          <th class="text-center">
-            channel
-          </th>
-          <th class="text-center">
-            category
-          </th>
-          <th class="text-center">
-            content
-          </th>
-        </tr>
-      </thead>
-      <tbody class="text-center">
-        <tr>
-          <td rowspan="5"> <v-img style="display: block; margin: auto; max-width: 150px;"
-       :src="post.channelImg"></v-img> </td>
-          <td>운동 영상 제목</td>
-          <td>{{ post.title }}</td>
-        </tr>
-         <tr>
-          <td>채널 이름</td>
-          <td>{{ post.channel }}</td>
-        </tr>
-         <tr>
-          <td>파트</td>
-          <td>{{ post.part }}</td>
-        </tr>
-         <tr>
-          <td>조회수</td>
-          <td>{{ post.viewCnt }}</td>
-        </tr>
-         <tr>
-          <td>좋아요 수</td>
-          <td>{{ post.likeCnt }}</td>
-        </tr>
-      </tbody>
-    </template>
-  </v-simple-table>
+      <template>
+          <v-form>
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="newComment"
+                          :append-outer-icon="newComment ? 'mdi-send' : 'mdi-chat-processing-outline'"
+                          prepend-icon="mdi-emoticon"
+                          filled
+                          clear-icon="mdi-close-circle"
+                          clearable
+                          label="댓글"
+                          type="text"
+                          @click:append="toggleMarkerC"
+                          @click:append-outer="sendMessageC"
+                          @click:clear="clearMessageC"
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-form>
+          <v-container>
+         <v-expansion-panels>
+          <v-expansion-panel v-for="(comment, idx) in commentList" :key="comment.id">
+            <v-expansion-panel-header>
+              <v-row no-gutters style="text-align:center">
+                <v-col cols="1"> {{ idx+1 }} </v-col>
+                <v-col cols="1"> {{ comment.writer }} </v-col>
+                <v-col cols="7" v-if="checkWriter"> <div v-if="getCommentId === comment.id"><input type="text" style="border:2px solid blue" @click.stop="" v-model="commentContent"><span><v-btn @click.stop="updateC(comment.id)"
+                      icon color="green"><v-icon>mdi-check</v-icon></v-btn><v-btn @click.stop="deleteC(comment.id)"
+                      icon color="red"><v-icon>mdi-delete</v-icon></v-btn><v-btn @click.stop="cancelC()"
+                      icon color="grey"><v-icon>mdi-close-box</v-icon></v-btn></span></div><div v-else>{{ comment.content }} <v-btn @click.stop="updateFormC(comment.userId, comment.id, comment.content)"
+                      icon color="grey"><v-icon>mdi-pencil</v-icon></v-btn></div> </v-col>
+                <v-col v-else  cols="7"> {{ comment.content }} <v-btn @click.stop="updateFormC(comment.userId, comment.id, comment.content)"
+                      icon color="grey"><v-icon>mdi-pencil</v-icon></v-btn> </v-col>
+                <v-col cols="3"> {{ comment.createdAt }} </v-col>
+              </v-row>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+                 <v-form>
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="newReply"
+                          :append-outer-icon="newReply ? 'mdi-send' : 'mdi-chat-processing-outline'"
+                          prepend-icon="mdi-emoticon"
+                          filled
+                          clear-icon="mdi-close-circle"
+                          clearable
+                          label="답글"
+                          type="text"
+                          @click:append="toggleMarkerR"
+                          @click:append-outer="sendMessageR(comment.postId, comment.id)"
+                          @click:clear="clearMessageR"
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-form>
+                <v-container>
+                  <v-row no-gutters v-for="reply in comment.replyList" :key="reply.id" style="text-align:center; ">
+                    <v-col cols="1"><v-icon>mdi-arrow-right-bottom</v-icon></v-col>
+                    <v-col cols="2"> {{ reply.writer }} </v-col>
+                    <v-col cols="6" v-if="checkReplyWriter"> <div v-if="getReplyId === reply.id"><input type="text" style="border:2px solid blue" @click.stop="" v-model="replyContent"><span><v-btn @click.stop="updateR(reply.id)"
+                              icon color="green"><v-icon>mdi-check</v-icon></v-btn><v-btn @click.stop="deleteR(reply.id)"
+                              icon color="red" ><v-icon>mdi-delete</v-icon></v-btn><v-btn @click.stop="cancelR()"
+                              icon color="grey"><v-icon>mdi-close-box</v-icon></v-btn></span></div><div v-else>{{ reply.content }} <v-btn @click.stop="updateFormR(reply.userId, reply.id, reply.content)"
+                              icon color="grey"><v-icon>mdi-pencil</v-icon></v-btn></div> </v-col>
+                    <v-col cols="6" v-else> {{ reply.content }} <v-btn @click.stop="updateFormR(reply.userId, reply.id, reply.content)"
+                              icon color="grey"><v-icon>mdi-pencil</v-icon></v-btn> </v-col>
+                    <v-col cols="3"> {{ reply.createdAt }} </v-col>
+                  </v-row>
+              </v-container>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+        </v-container>
+      </template>
     </div>
-    <div style="width: 1100px; margin: auto;" id="buttonarea">
-      <v-btn v-show="user.role" color="blue accent-4" style="color:white" @click="postupdate">수정</v-btn>
-      <v-btn v-show="user.role" color="pink lighten-2" style="color:white" @click="postdelete">삭제</v-btn>
-    </div>
-
-
-
-
-
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
-import {createComment} from "@/api/comment";
-import {updateComment} from "@/api/comment";
+import { mapState } from 'vuex';
+
+import { getCommentListByPostId } from "@/api/comment";
+import { createComment } from "@/api/comment";
+import { deleteComment } from '@/api/comment';
+import { updateComment } from "@/api/comment";
+import { createReply } from "@/api/reply";
+import { updateReply } from "@/api/reply";
+import { deleteReply } from "@/api/reply";
+
+// 이벤트 버블링 방지 처리 완료 event.stopPropagation();
 export default {
   name: "CommentList",
+  props: ['postId'],
   data(){
     return{
-      id : "",
+      commentId : 0,
+      replyId : 0,
+      commentList: [],
+      isWriter : false,
+      isReplyWriter : false,
+      isUpdateComment : false,
+      isUpdateReply : false,
+      userId : 0,
+      commentContent: '',
+      replyContent:'',
+      show: false,
+      newComment: '',
+      newReply:'',
+      markerC: true,
+      markerR: true,
     }
   },
   computed: {
+    checkWriter() {
+      return this.isWriter
+    },
+    checkReplyWriter() {
+      return this.isReplyWriter
+    },
+    getCommentId() {
+      return this.commentId
+    },
+    getReplyId() {
+      return this.replyId
+    },
+    getCommentContent() {
+      return this.updateComment
+    },
+    getReplyContent() {
+      return this.updateReply
+    },
     ...mapState([
-      "post", "user"
-    ])
+      "user"
+    ]),
   },
   created(){
-    const pathName = new URL(document.location).pathname.split("/");
-    this.id = pathName[pathName.length-1]
-    this.getDetilPost(this.id, this.user.id);
+    this.userId = this.user.id
+    this.getCommentList()
   },
   methods : {
-    async getDetilPost(){
-      const part = await getPost(this.id, this.user.id);
-      this.$store.commit('GET_DETAILPOST', part.data);   
+    async getCommentList(){
+      const {data} = await getCommentListByPostId(Number(this.postId));
+      this.commentList = data
     },
-    postupdate(){
-      this.$router.push({name: 'postUpdate'})
+    updateFormC(writerId, currCommentId, currContent){
+      this.commentContent = currContent
+      this.commentId = currCommentId
+      if(this.userId === writerId) {
+        this.isWriter = true
+      }else {
+        this.isWriter = false
+      }
     },
-    postdelete(){
-      this.PostDelete(this.id)
+    updateFormR(writerId, currReplyId, currContent){
+      this.replyContent = currContent
+      this.replyId = currReplyId
+      if(this.userId === writerId) {
+        this.isReplyWriter = true
+      }else {
+        this.isReplyWriter = false
+      }
     },
-    async PostDelete(){
-      await deletePost(this.id)
-      this.$router.push({name: 'postList'})
+    async updateC(cId) {
+      let commentData = {
+        content: this.updateComment
+      }
+      await updateComment(cId, commentData)
+      window.location.reload()
+    },
+    async updateR(rId) {
+      let replyData = {
+         content: this.updateReply
+      }
+      await updateReply(rId, replyData)
+      window.location.reload()
+    },
+    cancelC() {
+      this.commentId = 0
+    },
+    cancelR() {
+      this.replyId = 0
+    },
+    async deleteC(cId){
+      await deleteComment(cId)
+      window.location.reload()
+    },
+    async deleteR(rId){
+      await deleteReply(rId)
+      window.location.reload()
+    },
+    toggleMarkerC () {
+      this.markerC = !this.markerC
+    },
+    async sendMessageC () {
+      const commentData = {
+        userId: this.userId,
+        writer: this.user.nickname,
+        postId: this.postId,
+        content: this.newComment
+      }
+      await createComment(commentData)
+      this.clearMessageC()
+      window.location.reload()
+    },
+    clearMessageC () {
+      this.newComment = ''
+    },
+    toggleMarkerR () {
+      this.markerR = !this.markerR
+    },
+    async sendMessageR (pId, cId) {
+      const replyData = {
+        userId: this.userId,
+        writer: this.user.nickname,
+        postId: pId,
+        commentId: cId,
+        content: this.newComment
+      }
+      console.log(replyData)
+      await createReply(replyData)
+      this.clearMessageR()
+      window.location.reload()
+    },
+    clearMessageR () {
+      this.newReply = ''
     },
   }
 }
