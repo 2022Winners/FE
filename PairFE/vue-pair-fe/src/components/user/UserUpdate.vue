@@ -1,32 +1,29 @@
 <template>
   <div class="container">
-    <v-simple-table style="width: 1000px; display: block; margin: auto">
-    <template v-slot:default>
+      <v-container style="text-align:center">
         <div  v-if="user.imageId!= null && user.imageId!= 0"> 
-            <div class="box"><v-img style="display: block; margin: auto; max-width: 350px;" :src="`${image.uri}`">
-              </v-img></div> 
+            <v-avatar size="350"><v-img style="display: block; margin: auto;" :src="`${image.uri}`">
+              </v-img></v-avatar> 
             </div>
           <div  v-else> 
-             <div class="box"><v-img style="display: block; margin: auto; max-width: 350px;" src="https://2022winners.s3.ap-northeast-2.amazonaws.com/ex.png">
-             </v-img></div>
+            <v-avatar size="350">
+             <v-img style="display: block; margin: auto; max-width: 350px;" src="https://2022winners.s3.ap-northeast-2.amazonaws.com/ex.png">
+             </v-img>
+             </v-avatar>
           </div>
-      <tbody class="text-center">
-         <tr>
-           <td v-if="user.emageId!= null && user.emageId!= 0 " rowspan="6"> <v-img style="display: block; margin: auto; max-width: 150px;" :src="`${image.uri}`"></v-img> </td>
-          <td>아이디</td>
-          <td>{{user.loginId}}</td>
-        </tr>
-        <tr>
-          <td>이메일</td>
-          <td>{{user.email}}</td>
-        </tr>
-        <tr>
-          <td>가입일자</td>
-          <td>{{user.createdAt}}</td>
-        </tr>
-      </tbody>
-    </template>
-  </v-simple-table>
+          </v-container>
+          <class class="m-4"> <v-row>
+              <v-col cols="3">아이디</v-col>
+              <v-col cols="9">{{user.loginId}}</v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="3">이메일</v-col>
+              <v-col cols="9">{{user.email}}</v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="3">가입일자</v-col>
+              <v-col cols="9">{{user.createdAt}}</v-col>
+            </v-row></class>
     <class class="m-4">
       <v-form
       ref="form"
@@ -56,7 +53,7 @@
         required
       ></v-text-field>
 
-      <div>더 정확한 영상을 추천을 위해 알려주세요(선택)</div>
+      <div style="font-size:20px">더 정확한 영상을 추천을 위해 알려주세요(선택)</div>
     <v-radio-group v-model="gender" row>
       <v-radio
         label="남"
@@ -85,7 +82,7 @@
       class="mr-4"
       @click="update"
     >
-      수정하기
+      수정
     </v-btn>
       <v-btn
       color="error"
