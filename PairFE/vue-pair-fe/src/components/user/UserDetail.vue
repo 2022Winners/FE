@@ -5,7 +5,7 @@
     <template v-slot:default>
       <thead>
         <tr>
-          <th v-if="userDetail.emageId!= null && userDetail.emageId!= 0 " class="text-center">
+          <th v-if="userDetail.imageId!= null && userDetail.imageId!= 0 " class="text-center">
             프로필 사진
           </th>
           <th class="text-center">
@@ -18,7 +18,7 @@
       </thead>
       <tbody class="text-center">
         <tr>
-          <td  v-if="userDetail.emageId!= null && userDetail.emageId!= 0" rowspan="6"> <v-img style="display: block; margin: auto; max-width: 150px;" :src="`${image.uri}`"></v-img> </td>
+          <td  v-if="userDetail.imageId!= null && userDetail.imageId!= 0" rowspan="6"> <v-img style="display: block; margin: auto; max-width: 150px;" :src="`${image.uri}`"></v-img> </td>
           <td>닉네임</td>
           <td>{{ userDetail.nickname }}</td>
         </tr>
