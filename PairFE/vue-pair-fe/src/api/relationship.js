@@ -10,3 +10,8 @@ export function follow(relationship) {
 export function unfollow(relationship) {
     return api.delete(`${REST_API}/api/relation`, relationship)
 }
+
+//관계 조회
+export function checkFollow(userId, datailId) {
+    return api.get(`${REST_API}/api/relation`, null, {params:{userId, datailId}})
+}
