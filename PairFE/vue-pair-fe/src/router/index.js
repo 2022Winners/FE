@@ -10,6 +10,7 @@ import PostCreate from '@/components/post/PostCreate.vue'
 import PostDetail from '@/components/post/PostDetail.vue'
 import PostUpdate from '@/components/post/PostUpdate.vue'
 import TopList from '@/components/post/TopList.vue'
+import PostLike from '@/components/post/PostLike.vue'
 
 import UserComment from '@/components/user/UserComment.vue'
 import UserDetail from '@/components/user/UserDetail.vue'
@@ -96,6 +97,11 @@ const routes = [
         path: "follow/:userId",
         name: "userFollow",
         component: UserFollow
+      },
+      {
+        path: "likepost",
+        name: "userLikePost",
+        component: PostLike
       },
     ]
   },
