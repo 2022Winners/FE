@@ -32,6 +32,11 @@ export function getUserList() {
     return api.get(`${REST_API}/api/users`)
 }
 
+//유저 검색 조회
+export function getSearchUserList(mode, keyword) {
+    return api.get(`${REST_API}/api/users/search?mode=${mode}&&keyword=${keyword}`)
+}
+
 //팔로잉 목록 조회
 export function getFollowingList(userId) {
     return api.get(`${REST_API}/api/users/following/${userId}`)
