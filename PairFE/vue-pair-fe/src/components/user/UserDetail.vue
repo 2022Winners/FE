@@ -1,49 +1,52 @@
 <template>
   <div class="try">    
     <div>
-        <v-container style="display: block; margin: auto">
-          <div  v-if="userDetail.imageId!= null && userDetail.imageId!= 0"> 
-            <div class="box"><v-img style="display: block; margin: auto; max-width: 350px;" :src="`${image.uri}`">
-              </v-img></div> 
-              <h2 class="nickname">{{ userDetail.nickname }}</h2>
-            </div>
-          <div  v-else> 
-             <div class="box"><v-img style="display: block; margin: auto; max-width: 350px;" src="https://2022winners.s3.ap-northeast-2.amazonaws.com/ex.png">
-             </v-img></div>
-          <h2 class="nickname">{{ userDetail.nickname }}</h2>
+        <v-container style="text-align:center">
+          <div v-if="userDetail.imageId!= null && userDetail.imageId!= 0"> 
+            <v-avatar size="350">
+              <v-img style="display: block; margin: auto;" :src="`${image.uri}`">
+                </v-img>
+              </v-avatar>
           </div>
-       
-    <v-simple-table style="width: 1000px; display: block; margin: auto">
-    <template v-slot:default>
-      <tbody class="text-center">
-         <tr>
-          <td>아이디</td>
-          <td>{{userDetail.loginId}}</td>
-        </tr>
-        <tr>
-          <td>이메일</td>
-          <td>{{userDetail.email}}</td>
-        </tr>
-        <tr>
-          <td>가입일자</td>
-          <td>{{userDetail.createdAt}}</td>
-        </tr>
-        <tr v-if="userDetail.gender != 0">
-          <td>성별</td>
-          <td v-if="userDetail.gender===1">남성</td>
-          <td v-else>여성</td>
-        </tr>
-        <tr v-if="userDetail.age != 0">
-          <td>나이</td>
-          <td>{{userDetail.age}}</td>
-        </tr>
-      </tbody>
-    </template>
-  </v-simple-table>
+          <div  v-else> 
+            <v-avatar size="350">
+             <v-img style="display: block; margin: auto;" src="https://2022winners.s3.ap-northeast-2.amazonaws.com/ex.png">
+             </v-img>
+             </v-avatar>
+          </div>
+          <br>
+          <div><h2 class="nickname">{{ userDetail.nickname }}</h2></div>
+          <v-simple-table style="width: 1000px; display: block; margin: auto">
+          <template v-slot:default>
+            <tbody class="text-center">
+              <tr>
+                <td>아이디</td>
+                <td>{{userDetail.loginId}}</td>
+              </tr>
+              <tr>
+                <td>이메일</td>
+                <td>{{userDetail.email}}</td>
+              </tr>
+              <tr>
+                <td>가입일자</td>
+                <td>{{userDetail.createdAt}}</td>
+              </tr>
+              <tr v-if="userDetail.gender != 0">
+                <td>성별</td>
+                <td v-if="userDetail.gender===1">남성</td>
+                <td v-else>여성</td>
+              </tr>
+              <tr v-if="userDetail.age != 0">
+                <td>나이</td>
+                <td>{{userDetail.age}}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
      </v-container>
     </div>
     <div v-if="user.id===userDetail.id" style="width: 1100px; margin: auto;" id="buttonarea">
-      <v-btn color="primary" style="color:white"><router-link :to="`/user/update/${user.id}`"> 수정</router-link></v-btn>
+      <v-btn color="primary"><router-link :to="`/user/update/${user.id}`"><span style="color:white">수정</span></router-link></v-btn>
       <v-dialog
       v-model="dialog"
       persistent
@@ -51,7 +54,7 @@
       >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          color="blue-grey lighten-5"
+          color="error"
           v-bind="attrs"
           v-on="on"
         >
@@ -140,7 +143,7 @@ export default {
 #buttonarea{
   display: flex;
   justify-content: center;
-  
+  gap: 20px;
 }
 .box {
     width: 250px;
