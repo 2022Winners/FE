@@ -17,8 +17,6 @@
       </div>     
     </div> 
     </div>  
-    <router-link to="/post">영상뷰</router-link>
-    <router-link to="/admin">관리자뷰</router-link>  
     <router-view/>
   </div>
   

@@ -7,8 +7,8 @@
         <b-form-input id="loginPw" type="password" v-model.trim="loginPw" placeholder="비밀번호를 입력하세요."></b-form-input>
       </b-form-group>
        <div>{{errMsg}}</div>
-       <v-btn color= "accent" @click="login">로그인</v-btn>
-      <v-btn color="primary" style="text-decoration:none"><router-link :to="`/user/join`">회원가입</router-link></v-btn>
+       <v-btn color= "accent" @click="login">로그인</v-btn> &nbsp;&nbsp;&nbsp;
+      <v-btn color="primary" style="text-decoration:none"><router-link :to="`/user/join`"><span style="color:white">회원가입</span></router-link></v-btn>
     </div>
 </template>
 

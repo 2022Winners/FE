@@ -132,8 +132,6 @@ export default {
             activeGroup : null,
         }
     },
-    // userDetail.imageId!= null && userDetail.imageId!= 0 " 
-    // :src="`${image.uri}`"
     computed: {
         checkLogin() {
             return this.$store.getters.isLogin
@@ -167,36 +165,3 @@ export default {
     },
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-/* header {
-  background-color: rgb(44, 44, 44);
-  line-height: 70px;
-  padding: 0px 30px;
-}
-
-.header-nav {
-  display: flex;
-  justify-content: space-between;
-}
-
-.header-logo {
-  margin: 0px 10px;
-}
-
-.header-item {
-  display: inline-block;
-  margin: 0px 10px;
-}
-
-nav a {
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-} */
-</style>
