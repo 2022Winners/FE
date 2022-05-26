@@ -36,6 +36,9 @@ export default new Vuex.Store({
       state.user = {id:0}
       state.image = {}
     },
+    USER_UPDATE(state, payload){
+      state.user = payload
+    },
     GET_POSTS(state, payload) {
       state.posts = payload
     },
@@ -130,7 +133,19 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    
+    updateUser({ commit }, userData) {
+      const API_URL = `http://localhost:9999/api/user`
+      axios({
+        url: API_URL,
+        method: 'PUT',
+        params: userData
+      }).then(() => {
+        commit('USER_UPDATE', userData)
+        router.push({ name: 'userDetail', params: {userId: userData.id } })
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
 
   },
   modules: {

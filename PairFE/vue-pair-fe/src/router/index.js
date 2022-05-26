@@ -27,7 +27,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '',
     name: 'main',
     component: MainView,
   },
