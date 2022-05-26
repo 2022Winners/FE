@@ -2,22 +2,21 @@
   <div id="followtables"> 
     <div id="follow">
       <span class="material-icons">
-thumb_up
-</span>
-<v-icon >mdi-thums_up</v-icon>
+      <v-icon>mdi-thumb-up</v-icon>
+      </span>
       <h4>FOLLOW LIST</h4>
       <v-simple-table style="width: 600px; display: block;">
     <template v-slot:default>
       <thead>
         <tr id="trheader">
           <th class="text-center">
-            number
+            번호
           </th>
           <th class="text-center">
-            followName
+            팔로잉
           </th>
           <th class="text-center">
-            follow
+            버튼
           </th>
         </tr>
       </thead>
@@ -38,19 +37,22 @@ thumb_up
   </v-simple-table>
     </div>
     <div id="follow">
+      <span class="material-icons">
+      <v-icon>mdi-thumb-up</v-icon>
+      </span>
       <h4>FOLLOWER LIST</h4>
       <v-simple-table style="width: 600px; display: block; ">
     <template v-slot:default>
       <thead>
         <tr id="trheader">
           <th class="text-center">
-            number
+            번호
           </th>
           <th class="text-center">
-            followerName
+            팔로워
           </th>
           <th class="text-center">
-            follow
+            버튼
           </th>
         </tr>
       </thead>

@@ -35,7 +35,7 @@
         <tr v-for="user in pageUserList" :key="user.id">
           <td><b-form-checkbox :value="user.id" v-model="checkedAreas"></b-form-checkbox></td>
           <td>{{user.id }}</td>
-          <td><router-link id="router" :to="`/user/${user.id}/detail`">{{user.loginId}}</router-link></td>
+          <td><router-link id="router" :to="`/user/detail/${user.id}`">{{user.loginId}}</router-link></td>
           <td>{{user.nickname}}</td>
           <td>{{user.email}}</td>
           <td>{{user.createdAt }}</td>         
