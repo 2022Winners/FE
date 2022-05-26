@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="try">    
     <div>
         <v-container style="text-align:center">
           <div v-if="userDetail.imageId!= null && userDetail.imageId!= 0"> 
@@ -87,23 +87,14 @@
     </v-dialog>
     
     </div>
-    <div v-else-if="this.isFollow">
-      <v-btn color="error" @click="unFollow">
-         팔로우 취소
-        </v-btn>
-    </div>
-  <div v-else>
-     <v-btn color="accend" @click="follow">
-         팔로우
-      </v-btn>
-  </div>
+
+
   </div>
 </template>
 <script>
 import {mapState} from 'vuex'
 import {getUser} from "@/api/user";
 import {deleteUser} from "@/api/user";
-import {checkFollow} from "@/api/relationship";
 export default {
   name: "UserDetail",
   data(){
@@ -112,22 +103,17 @@ export default {
       image: {},
       userDetail: {},
       detailId: "",
-      isFollow: false
     }
   },
   computed: {
     ...mapState([
       "user"
-    ]),
+    ])
   },
-  
   created(){
     const pathName = new URL(document.location).pathname.split("/");
     this.detailId = pathName[pathName.length-1]
     this.getDetailUser(this.detailId);
-    if(this.user.id!==this.detailId){
-      this.checkfollow(this.user.id, this.detailId)
-    }
   },
   methods : {
     async getDetailUser(detailId){
@@ -145,37 +131,9 @@ export default {
     async UserDelete(userId){
       await deleteUser(userId)
       this.$store.commit('USER_LOGOUT')
+     
       this.$router.push({name: 'main'})
     },
-    async checkfollow(userId, datailId){
-      const getData = await checkFollow(userId, datailId)
-      this.isFollow = getData.data
-    },
-    unFollow(){
-      let unfollow = {
-        userId : this.user.id,
-        followId : this.detailId,
-      };
-      let payload = {
-        unfollow : unfollow,
-        follow : this.detailId
-      }
-      this.isFollow = false
-      this.$store.dispatch("unFollow", payload)
-    },
-    follow(){
-      let follow = {
-        userId : this.user.id,
-        followId : this.detailId,
-      };
-      let payload = {
-        follow : follow,
-        follower : this.detailId
-      }
-      this.isFollow = true
-      this.$store.dispatch("Follow", payload)
-    }
-
   }
 }
 </script>
