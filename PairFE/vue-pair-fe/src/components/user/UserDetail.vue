@@ -47,12 +47,12 @@
   </v-simple-table>
     </div>
     <div v-if="user.id===userDetail.id" style="width: 1100px; margin: auto;" id="buttonarea">
-      <v-btn color="yellow darken-2" style="color:white"><router-link :to="`/user/${userDetail.id}/update`">수정</router-link></v-btn>
-       <v-dialog
+      <v-btn color="yellow darken-2" style="color:white"><router-link :to="`/user/update/${user.id}`">수정</router-link></v-btn>
+      <v-dialog
       v-model="dialog"
       persistent
       max-width="290"
-    >
+      >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           color="blue-grey lighten-5"
@@ -112,15 +112,16 @@ export default {
   },
   created(){
     const pathName = new URL(document.location).pathname.split("/");
-    this.detailId = pathName[pathName.length-2]
+    this.detailId = pathName[pathName.length-1]
     this.getDetailUser(this.detailId);
   },
   methods : {
     async getDetailUser(detailId){
       const getData = await getUser(detailId);
       this.userDetail = getData.data.user
-      this.image = getData.data.image
       console.log(this.userDetail) 
+      if(this.userDetail.imageId!=0)
+        this.image = getData.data.image
     },
     userupdate(){
       this.$router.push({name: 'userUpdate'})

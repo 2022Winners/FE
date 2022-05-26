@@ -73,12 +73,12 @@ const routes = [
         component: UserJoin
       },
       {
-        path: ":userId/detail",
+        path: "detail/:userId",
         name: "userDetail",
         component: UserDetail
       },
       {
-        path: ":userId/update",
+        path: "update/:userId",
         name: "userUpdate",
         component: UserUpdate
       },
@@ -88,12 +88,12 @@ const routes = [
         component: UserLikeList
       },
       {
-        path: ":userId/comment",
+        path: "comment/:userId",
         name: "userComment",
         component: UserComment
       },
       {
-        path: ":userId/follow",
+        path: "follow/:userId",
         name: "userFollow",
         component: UserFollow
       },
