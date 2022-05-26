@@ -1,14 +1,13 @@
 <template>
-  <div>
+    <div id="postManage" class="container">
     <div>
-      <h2>전체 영상 리스트</h2>
       <div id="admin-searcharea">
         <b-form-select v-model="mode" :options="options" style="width: 150px"></b-form-select>
         <b-form-input type="text" v-model="keyword" placeholder="검색어를 입력하세요" style="width: 175px"></b-form-input>
-        <v-btn color="pink lighten-2" style="color:white" @click="search">검색</v-btn>
+        <v-btn color="accent" style="color:white" @click="search">검색</v-btn>
       </div>
-      <div>
-      <v-simple-table style="width: 1200px; display: block; ">
+      <div style="height : 550px">
+      <v-simple-table style="width: 1400px; display: block; ">
       <template v-slot:default>
       <thead>
         <tr>
@@ -42,20 +41,18 @@
      </v-simple-table>
     </div>
     </div>
-    <div id="admin-pagination-delete">
-      <v-btn color="purple accent-4" style="color:white; margin-top:15px;" @click="postdelete">삭제</v-btn>
-    <div id="adminpagination" >
+    <div id="admin-post-pagination-delete">
+      <v-btn color="error" style="color:white; margin-top:15px;" @click="postdelete">삭제</v-btn>
+    <div id="admin-postpagination" >
       <b-pagination
+      variant="secondary"
       v-model="currentPage"
       pills :total-rows="rows"
       :per-page="perPage"
-      aria-controls="my-table" 
-       
+      aria-controls="my-table"     
     ></b-pagination>  
     </div>
-    </div>
-    
-         
+    </div>      
   </div>
 </template>
 
@@ -122,22 +119,22 @@ export default {
 
 <style>
 #admin-searcharea{
-  margin-left: 800px;
-  margin-bottom: 10px;
+  justify-content: flex-end;
+  margin-bottom: 30px;
   display: flex;
   gap: 3px;
 }
 
-#adminpagination{
+#admin-postpagination{
   display: flex;
-  width: 700px;
   margin: auto;
   margin-top: 15px;
   
 }
-
-#admin-pagination-delete{
+#admin-post-pagination-delete{
   display: flex;
+  margin-top: 15px;
 }
+
 
 </style>

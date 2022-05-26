@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <div>    
-        <div id="partbtn">
-         <v-btn color="blue accent-4" style="color:white" @click="search">TOTAL</v-btn>
+  <div id="postList">
+    <div> 
+         
+        
+         <div id="partbtn">
+        <v-btn color="blue accent-4" style="color:white" @click="search">TOTAL</v-btn>
          <v-btn color="pink lighten-2" style="color:white" @click="partsearch">전신</v-btn>
          <v-btn color="yellow darken-2" style="color:white" @click="partsearch">상체</v-btn>
-         <v-btn color="teal accent-3" style="color:white" @click="partsearch">하체</v-btn>
+         <v-btn color="accent" style="color:white" @click="partsearch">하체</v-btn>
          <v-btn color="purple accent-4" style="color:white" @click="partsearch">복근</v-btn>
         </div>
        
@@ -37,12 +39,12 @@
     </div>
     <div id="registandsearch">
       <div>
-      <v-btn v-show="user.role" color="yellow darken-2" style="color:white" @click="create">영상 등록</v-btn>
+      <v-btn v-show="user.role" color="primary" style="color:white" @click="create">영상 등록</v-btn>
       </div>
       <div id="searcharea">
         <b-form-select v-model="mode" :options="options" style="width: 150px"></b-form-select>
         <b-form-input type="text" v-model="keyword" placeholder="검색어를 입력하세요" style="width: 175px"></b-form-input>
-        <v-btn color="pink lighten-2" style="color:white" @click="search">검색</v-btn>
+        <v-btn color="accent" style="color:white" @click="search">검색</v-btn>
       </div>
     </div>  
       <b-pagination
@@ -73,6 +75,7 @@ export default {
           { value: 2, text: '파트'},
           { value: 3, text: '제목+파트'},
       ],
+      activeGroup: null,
     }
   },
     computed: {
@@ -126,23 +129,16 @@ export default {
 <style>
 
 #partbtn{
-  margin-left: 100px;
-  margin-bottom: 15px;
   display: flex;
   gap: 5px;
 }
 
-#img-postlist{
-  /* height: 250px;
-  width: 300px; */
-  object-fit: fill;
-
-}
 
 #totallist{
   display: flex ;
   flex-flow: wrap;
   justify-content: center;
+  margin-top: 30px;
 }
 #router{
   text-decoration: none;
@@ -152,9 +148,9 @@ export default {
 #registandsearch{
   display: flex;
   justify-content: space-between;
-  margin-left: 80px;
-  margin-right: 80px;
-  margin-top: 20px;
+ 
+
+  margin-top: 30px;
 }
 
 #cardtext-postlist{
@@ -176,6 +172,17 @@ export default {
   gap: 3px;
   
 
+}
+
+#postList{
+  width: 1300px;
+  margin: auto;
+  margin-top: 20px;
+  
+}
+
+#colorchange{
+  width: 80px
 }
 
 

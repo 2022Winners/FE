@@ -1,18 +1,17 @@
 <template>
-  <div>
+  <div id="postManage" class="container">
     <div>
-      <h2>전체 회원 리스트</h2>
       <div id="admin-user-searcharea">
         <b-form-select v-model="mode" :options="options" style="width: 180px"></b-form-select>
         <b-form-input type="text" v-model="keyword" placeholder="검색어를 입력하세요" style="width: 175px"></b-form-input>
-        <v-btn color="pink lighten-2" style="color:white" @click="search">검색</v-btn>
+        <v-btn color="accent" style="color:white" @click="search">검색</v-btn>
       </div>
-      <div>
-      <v-simple-table style="width: 1200px; display: block; ">
+      <div style="height : 550px" id="manageusertable">
+      <v-simple-table style="width: 1200px; " id="manageusertable">
       <template v-slot:default>
       <thead>
         <tr>
-          <th class="text-center">
+          <th class="text-center" style="width:100px">
             선택
           </th>
           <th class="text-center" style="width:100px">
@@ -23,6 +22,9 @@
           </th>
            <th class="text-center">
             닉네임
+          </th>
+          <th class="text-center">
+            이메일
           </th>
            <th class="text-center" style="width:240px">
             가입일
@@ -35,6 +37,7 @@
           <td>{{user.id }}</td>
           <td><router-link id="router" :to="`/user/${user.id}/detail`">{{user.loginId}}</router-link></td>
           <td>{{user.nickname}}</td>
+          <td>{{user.email}}</td>
           <td>{{user.createdAt }}</td>         
         </tr>
       </tbody>
@@ -42,9 +45,9 @@
      </v-simple-table>
     </div>
     </div>
-    <div id="admin-pagination-delete">
-      <v-btn color="purple accent-4" style="color:white; margin-top:15px;" @click="userdelete">삭제</v-btn>
-    <div id="adminpagination" >
+    <div id="admin-post-pagination-delete">
+      <v-btn color="error" style="color:white; margin-top:15px;" @click="userdelete">삭제</v-btn>
+    <div id="admin-postpagination" >
       <b-pagination
       v-model="currentPage"
       pills :total-rows="rows"
@@ -64,7 +67,7 @@ import {mapState} from 'vuex'
 import {getSearchUserList} from "@/api/user";
 import {deleteUser} from "@/api/user";
 export default {
-  name: "PostAdmin",
+  name: "UserManagement",
   computed: {
     ...mapState([
       "user"
@@ -120,15 +123,17 @@ export default {
 
 <style>
 #admin-user-searcharea{
-  margin-left: 770px;
-  margin-bottom: 10px;
+  
+  justify-content: flex-end;
+  margin-bottom: 30px;
   display: flex;
   gap: 3px;
+  
 }
 
 #adminpagination{
   display: flex;
-  width: 700px;
+  width: 800px;
   margin: auto;
   margin-top: 15px;
   
@@ -136,6 +141,11 @@ export default {
 
 #admin-pagination-delete{
   display: flex;
+  margin: auto;
 }
 
+#manageusertable{
+  margin: auto;
+
+}
 </style>

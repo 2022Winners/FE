@@ -1,6 +1,7 @@
 <template>
   <div>
-      <h4 class="toplisttag" >지금 핫한 영상</h4>
+       
+      <h4 class="toplisttag" style="margin-top:8px;"><v-icon>mdi-fire</v-icon>지금 핫한 영상<v-icon>mdi-fire</v-icon></h4>
          <div id="toplist"  >
            <v-card v-for="post in posts" :key="post.id" height="400px" style="margin: 8px; width: 280px">
            <template slot="progress">

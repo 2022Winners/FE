@@ -9,6 +9,7 @@ import PostList from '@/components/post/PostList.vue'
 import PostCreate from '@/components/post/PostCreate.vue'
 import PostDetail from '@/components/post/PostDetail.vue'
 import PostUpdate from '@/components/post/PostUpdate.vue'
+import TopList from '@/components/post/TopList.vue'
 
 import UserComment from '@/components/user/UserComment.vue'
 import UserDetail from '@/components/user/UserDetail.vue'
@@ -19,6 +20,7 @@ import UserUpdate from '@/components/user/UserUpdate.vue'
 import store from '@/store/index'
 
 import PostManagement from '@/components/admin/PostManagement.vue'
+import UserManagement from '@/components/admin/UserManagement.vue'
 
 
 Vue.use(VueRouter)
@@ -52,6 +54,11 @@ const routes = [
         path: "update",
         name: "postUpdate",
         component: PostUpdate
+      },
+      {
+        path: "toplist",
+        name: "postTopList",
+        component: TopList
       },
     ]
   },
@@ -98,8 +105,13 @@ const routes = [
     component: AdminView,
     children: [
       {
-        path: "mngt/post/list",
-        name: "postManagement",
+        path: "userlist",
+        name: "usermanagelist",
+        component: UserManagement
+      },
+      {
+        path: "",
+        name: "postmanagelist",
         component: PostManagement
       },
       
