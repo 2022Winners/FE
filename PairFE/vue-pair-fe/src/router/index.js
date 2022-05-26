@@ -12,10 +12,8 @@ import PostUpdate from '@/components/post/PostUpdate.vue'
 
 import UserComment from '@/components/user/UserComment.vue'
 import UserDetail from '@/components/user/UserDetail.vue'
-import UserFind from '@/components/user/UserFind.vue'
 import UserFollow from '@/components/user/UserFollow.vue'
 import UserJoin from '@/components/user/UserJoin.vue'
-import UserLikeList from '@/components/user/UserLikeList.vue'
 import UserLogin from '@/components/user/UserLogin.vue'
 import UserUpdate from '@/components/user/UserUpdate.vue'
 import store from '@/store/index'
@@ -83,11 +81,6 @@ const routes = [
         component: UserUpdate
       },
       {
-        path: ":userId",
-        name: "userLikeList",
-        component: UserLikeList
-      },
-      {
         path: "comment/:userId",
         name: "userComment",
         component: UserComment
@@ -96,11 +89,6 @@ const routes = [
         path: "follow/:userId",
         name: "userFollow",
         component: UserFollow
-      },
-      {
-        path: "find",
-        name: "userFind",
-        component: UserFind
       },
     ]
   },
