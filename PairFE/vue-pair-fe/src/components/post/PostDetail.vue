@@ -1,10 +1,13 @@
 <template>
   <div>
-    <div><a v-bind:href="`https://www.youtube.com/embed/${post.videoId}`" target="blank">
+
+    <div style="margin-top:15px; margin-bottom:15px "><a v-bind:href="`https://www.youtube.com/embed/${post.videoId}`" target="blank">
       <v-img style="max-width: 600px; display: block; margin: auto"
        v-bind:src="`http://img.youtube.com/vi/${post.videoId}/0.jpg`">
        </v-img></a>
     </div>
+
+ 
     <div>
       <v-simple-table style="width: 1000px; display: block; margin: auto">
     <template v-slot:default>
@@ -48,7 +51,7 @@
     </template>
   </v-simple-table>
     </div>
-    <div style="width: 1100px; margin: auto;" id="buttonarea">
+    <div style="width: 1100px; margin: auto;" id="buttonareas">
       <v-btn v-show="user.role" color="blue accent-4" style="color:white" @click="postupdate">수정</v-btn>
       <v-btn v-show="user.role" color="pink lighten-2" style="color:white" @click="postdelete">삭제</v-btn>
     </div>
@@ -105,9 +108,14 @@ export default {
 
 <style>
 
-#buttonarea{
+#buttonareas{
   display: flex;
   justify-content: space-between;
+  
+}
+
+#detailphoto{
+  
   
 }
 

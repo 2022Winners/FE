@@ -1,11 +1,10 @@
 <template>
   <div>
-    <h2>메인 뷰</h2>
-
     <div v-if="user.id == 0">
          <top-list></top-list>
     </div>
-    <div v-else-if="user.id != 0" id="location">
+    <div id="mainposition">
+    <div v-if="user.id != 0" id="location">
       <div>
          <health-map></health-map>
       </div>
@@ -13,13 +12,13 @@
         <recommend-gender></recommend-gender>
         <recommend-age></recommend-age>
       </div>
-      <div v-else-if="user.age == 0 && user.age == 0">
+      <div v-else-if="user.age == 0 && user.age == 0" id="maintoplist">
         <top-list></top-list>
       </div>     
-    </div>   
+    </div> 
+    </div>  
     <router-link to="/post">영상뷰</router-link>
-    <router-link to="/admin">관리자뷰</router-link>
-     
+    <router-link to="/admin">관리자뷰</router-link>  
     <router-view/>
   </div>
   
@@ -52,6 +51,14 @@ export default {
   display: flex;
   gap: 30px;
 }
+
+#mainposition{
+  width:1600px;
+  display: container;
+  margin: auto;
+  margin-top: 20px;
+}
+
 
 
 </style>

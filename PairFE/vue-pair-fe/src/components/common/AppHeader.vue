@@ -31,12 +31,14 @@
                     <v-list-item-title>홈</v-list-item-title>
                 </v-list-item>
                 </router-link>
+                <router-link :to="{ name: 'postTopList' }" style="text-decoration:none">
                 <v-list-item>
                     <v-list-item-icon>
                     <v-icon>mdi-heart</v-icon>
                     </v-list-item-icon>
                     <v-list-item-title>인기 영상</v-list-item-title>
                 </v-list-item>
+                </router-link>
                 <router-link :to="{ name: 'postList' }" style="text-decoration:none">
                 <v-list-item>
                     <v-list-item-icon>
@@ -53,7 +55,7 @@
                     <v-list-item-title>마이 페이지</v-list-item-title>
                 </v-list-item>
                 </router-link>
-                <router-link :to="{ name: 'admin' }" style="text-decoration:none">
+                <router-link :to="{ name: 'postmanagelist' }" style="text-decoration:none">
                 <v-list-item v-show="isAdmin">
                     <v-list-item-icon>
                     <v-icon>mdi-desktop-mac-dashboard</v-icon>

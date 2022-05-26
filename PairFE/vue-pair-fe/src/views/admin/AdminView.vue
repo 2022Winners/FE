@@ -1,27 +1,21 @@
 <template>
-  <div>
-
-    <h2>관리자 화면</h2>
-    <!-- <post-management></post-management> -->
-    <user-management></user-management>
+  <div style="margin-top:10px">
+    <b-nav tabs align="center" id="adminnav"> 
+    <b-nav-item to="/admin" :active="$route.name == 'postmanagelist'">전체 영상 관리</b-nav-item>
+    <b-nav-item to="/admin/userlist" :active="$route.name == 'usermanagelist'" >전체 회원 관리</b-nav-item> 
+    </b-nav>
     <router-view></router-view>
-
   </div>
 </template>
 
 <script>
-// import PostManagement from "@/components/admin/PostManagement";
-import UserManagement from "@/components/admin/UserManagement";
+
 export default {
     name: "AdminView",
-    components: {
-      //  PostManagement,
-        UserManagement
-   },
-
 }
 </script>
 
 <style>
+
 
 </style>
