@@ -32,7 +32,7 @@
             <v-expansion-panel-header>
               <v-row no-gutters style="text-align:center">
                 <v-col cols="1"> {{ idx+1 }} </v-col>
-                <v-col cols="2"> &nbsp;&nbsp; {{ comment.writer }} </v-col>
+                <v-col cols="2"> &nbsp;&nbsp;<router-link :to="`/user/detail/${comment.userId}`"> {{ comment.writer }}</router-link> </v-col>
                 <v-col cols="6" v-if="checkWriter"> <div v-if="getCommentId === comment.id"><textarea style="border:2px solid blue; width:300px; max-width:500px; height: 80px;" @click.stop="" v-model="commentContent"></textarea><span><v-btn @click.stop="updateC(comment.id)"
                       icon color="green"><v-icon>mdi-check</v-icon></v-btn><v-btn @click.stop="deleteC(comment.id)"
                       icon color="red"><v-icon>mdi-delete</v-icon></v-btn><v-btn @click.stop="cancelC()"
@@ -66,10 +66,9 @@
                     </v-row>
                   </v-container>
                 </v-form>
-                <!-- <v-container> -->
                   <v-row no-gutters v-for="reply in comment.replyList" :key="reply.id" style="text-align:center; font-size:15px ">
                     <v-col cols="1"><v-icon style="font-size:13px">mdi-arrow-right-bottom</v-icon></v-col>
-                    <v-col cols="2"> {{ reply.writer }} </v-col>
+                    <v-col cols="2"> &nbsp;&nbsp; <router-link :to="`/user/detail/${reply.userId}`"> {{ reply.writer }}</router-link> </v-col>
                     <v-col cols="6" v-if="checkReplyWriter"> <div v-if="getReplyId === reply.id"><textarea style="border:2px solid blue;width:300px; max-width:500px; height: 80px;" @click.stop="" v-model="replyContent"></textarea><span><v-btn @click.stop="updateR(reply.id)"
                               icon color="green"><v-icon>mdi-check</v-icon></v-btn><v-btn @click.stop="deleteR(reply.id)"
                               icon color="red" ><v-icon>mdi-delete</v-icon></v-btn><v-btn @click.stop="cancelR()"
@@ -79,7 +78,6 @@
                               icon color="grey"><v-icon style="font-size:16px">mdi-pencil</v-icon></v-btn> </v-col>
                     <v-col cols="3"> <span>{{ reply.createdAt }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></v-col>
                   </v-row>
-              <!-- </v-container> -->
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
