@@ -61,7 +61,7 @@ import {mapState} from 'vuex'
 import {getPostList} from "@/api/post";
 import {deletePost} from "@/api/post";
 export default {
-  name: "PostAdmin",
+  name: "PostManagement",
   computed: {
     ...mapState([
       "user"
