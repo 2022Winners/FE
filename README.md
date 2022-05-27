@@ -12,6 +12,10 @@ FrontEnd-JavaScript, Vue
 ## 2. 프로젝트 결과물 소개
 
 ### 1. 메인 화면(비 로그인)
+![메인화면](https://user-images.githubusercontent.com/99406992/170679191-3c8b1b69-4d06-4c6b-968e-43d0fad3e6e3.PNG)
+![메인화면(비로그인)](https://user-images.githubusercontent.com/99406992/170679209-21ddf274-a575-46b7-9e96-89fca8444af3.PNG)
+![로그인전네브바](https://user-images.githubusercontent.com/99406992/170679378-48ecba7a-2ba2-4ac5-bc22-44d87950c136.PNG)
+
 
 ![1. 메인화면]
 ![2. 조회수 많은 인기영상]
@@ -36,6 +40,10 @@ FrontEnd-JavaScript, Vue
 
 
 ### 2. 메인화면(로그인)
+![로그인화면](https://user-images.githubusercontent.com/99406992/170679449-3e777af6-84ce-42f0-a9e1-6db50dfb77f1.PNG)
+![로그인한후메인화면](https://user-images.githubusercontent.com/99406992/170679477-4c27263c-dd10-4133-a632-79135922c639.PNG)
+![로그인후네브바](https://user-images.githubusercontent.com/99406992/170679517-85fa3efa-0462-4a08-bcd9-80294e50a246.PNG)
+
 ![5. 로그인 화면]
 ![5. 로그인 한 후 메인 화면]
 ![7. 로그인 후 생기는 영상별 찜하기 버튼]
@@ -47,7 +55,38 @@ FrontEnd-JavaScript, Vue
 - 로그아웃을 누르면 해당 계정에서 로그아웃되고 세션을 제거함
 - 로그인을 하면 조회수 옆에 찜하기 버튼이 생성되고, 해당 버튼을 누르면 마이페이지에서 조회 가능
 
-### 3. 영상 상세 정보 화면
+### 3. 인기 영상 화면
+![인기영상](https://user-images.githubusercontent.com/99406992/170680600-6ec243b2-b4df-4683-99e0-48e5211486d7.PNG)
+
+
+### 4. 영상 목록 화면
+![영상목록](https://user-images.githubusercontent.com/99406992/170680654-fb4f704b-42ab-4a6b-97dd-48996b7bd0c6.PNG)
+
+### 5. 영상 상세 및 댓글 화면
+![영상상세및댓글](https://user-images.githubusercontent.com/99406992/170680955-9f9635f1-fac8-47d4-aa0a-3f57a5ea189b.PNG)
+
+
+### 6. 마이페이지 화면
+![마이페이지](https://user-images.githubusercontent.com/99406992/170680709-2b025565-9450-4a0f-a2b7-b873760f7b2a.PNG)
+![회원수정](https://user-images.githubusercontent.com/99406992/170681452-925bb5bb-76f8-439e-a936-5b9fdcb1fcaa.PNG)
+![회원탈퇴](https://user-images.githubusercontent.com/99406992/170681461-87b4109c-36df-4503-ba75-e029285c80af.PNG)
+![운동기록](https://user-images.githubusercontent.com/99406992/170681228-fcb135bd-0bb7-464e-86b9-e6a6905dcd1f.PNG)
+![팔로잉_팔로워](https://user-images.githubusercontent.com/99406992/170681290-3441a3ec-9d1b-4d9d-90cd-6adb6b1edafc.PNG)
+![팔로잉_팔로워상세조회](https://user-images.githubusercontent.com/99406992/170681342-ee148057-ead3-4204-9a91-3da4d9b1863a.PNG)
+![좋아요영상목록](https://user-images.githubusercontent.com/99406992/170681294-50d28dcd-26e8-4ba7-af25-b60a3b35b59c.PNG)
+
+### 7. 관리자 화면
+![관리자네브바](https://user-images.githubusercontent.com/99406992/170681673-b8818ddb-2fe5-4333-b956-d5b469896866.PNG)
+![관리자영상관리](https://user-images.githubusercontent.com/99406992/170681681-21211fde-fb91-41d0-9049-d5dceedec93d.PNG)
+![관리자영상상세](https://user-images.githubusercontent.com/99406992/170681705-60e3b832-37c1-4400-86ce-0566dbdb7d72.PNG)
+![관리자영상수정](https://user-images.githubusercontent.com/99406992/170681687-8a228953-14eb-4a4a-a0ea-13744ef45fae.PNG)
+![관리자회원관리](https://user-images.githubusercontent.com/99406992/170681770-ed52cf73-42c0-4cc3-8a4f-15f956b2aead.PNG)
+
+### 8. 회원가입 화면
+![회원가입](https://user-images.githubusercontent.com/99406992/170681827-014740f0-9b4e-4f16-ba39-3ab625fb36c2.PNG)
+
+
+
 
 ![수정완료]
 
